@@ -41,7 +41,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 9
 
 - Plán: volba projektu → rozklad → MVP → debugging → rozšíření → Final Quest.
-- Stav: čeká na WORLD 8.
+- Stav: dokončeno; validátor, Exporter, regresní audit a checkpoint commit.
 
 # Globální QA
 
