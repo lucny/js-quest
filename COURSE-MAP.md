@@ -33,3 +33,10 @@
 3. [Data řídí kreslení](05-arrays/03-array-loop.md)
 4. [Přidáváme nová data](05-arrays/04-push.md)
 5. [Data Field](05-arrays/05-data-field.md)
+
+## WORLD 6 — Objects
+
+1. [Vlastnosti patří k sobě](06-objects/01-one-entity.md)
+2. [Entita mění stav](06-objects/02-change-properties.md)
+3. [Co entita umí](06-objects/03-methods-and-many.md)
+4. [Creature System](06-objects/04-creature-system.md)

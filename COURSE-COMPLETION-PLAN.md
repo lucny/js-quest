@@ -25,7 +25,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 6
 
 - Plán: související proměnné → object literal → properties/method → pole objektů → Creature System.
-- Stav: čeká na WORLD 5.
+- Stav: dokončeno; validátor, Exporter, regresní audit a checkpoint commit.
 
 # WORLD 7
 
