@@ -1,0 +1,34 @@
+# Závislosti JavaScriptu / Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Výstupy nástrojů a dočasné soubory
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+tmp/
+*.log
+
+# Lokální konfigurace a systémové soubory
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Editor / IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+
+# Lokální runtime soubory OpenCode
+.opencode/node_modules/
+.opencode/server.lock.json
+.opencode/bun.lock
