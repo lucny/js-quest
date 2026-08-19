@@ -20,7 +20,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 5
 
 - Plán: hodnoty → pole → index/length → push → data + cyklus → Data Field.
-- Stav: čeká na WORLD 4.
+- Stav: dokončeno; validátor, Exporter, regresní audit a checkpoint commit.
 
 # WORLD 6
 

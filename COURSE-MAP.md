@@ -25,3 +25,11 @@
 2. [Funkce dostává údaje](04-functions/02-parameters.md)
 3. [Funkce může vrátit výsledek](04-functions/03-return-scope.md)
 4. [Procedural Scene](04-functions/04-procedural-scene.md)
+
+## WORLD 5 — Arrays
+
+1. [Mnoho hodnot pohromadě](05-arrays/01-many-values.md)
+2. [Kolik hodnot máme?](05-arrays/02-length-and-change.md)
+3. [Data řídí kreslení](05-arrays/03-array-loop.md)
+4. [Přidáváme nová data](05-arrays/04-push.md)
+5. [Data Field](05-arrays/05-data-field.md)
