@@ -2,6 +2,23 @@
 
 @JSQ.styles
 <style>
+:root,
+body,
+body button,
+body input,
+body select,
+body textarea,
+body nav,
+body aside,
+body [role="navigation"],
+body [role="menu"],
+body [role="tree"],
+body [class*="menu"],
+body [class*="sidebar"],
+body [class*="toc"] {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif !important;
+}
+
 .jsq-card {
   border: 1px solid var(--jsq-accent, currentColor);
   border-left: 0.45rem solid var(--jsq-accent, currentColor);

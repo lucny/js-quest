@@ -116,6 +116,8 @@ Potom může následovat experiment nebo vysvětlení.
 
 Makro typu aktivity vždy stojí samostatně před blockquotem. Vloží atributový komentář pro tento jediný blok; nikdy nepoužívejte dvojici maker, která otevírá a zavírá HTML element přes více Markdown bloků.
 
+Pokud je karta zároveň kvízem, blockquote ukončete před první volbou. Možnosti `[( )]`, `[(X)]`, nápovědy `[[?]]` i blok řešení musí tvořit jeden souvislý LiaScript blok mimo blockquote; nevkládejte do renderované lekce task-list `- [ ]` / `- [x]` bez jasného účelu.
+
 ---
 
 ## 6. Kvízy

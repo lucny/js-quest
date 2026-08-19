@@ -1,6 +1,6 @@
 # Stav
 
-Pilot WORLD 1 je připraven jako referenční LiaScript lekce ve větvi `experimental/pilot`. Opravná iterace odstranila nespolehlivé HTML wrappery i okamžitě viditelnou pomoc. Zdroj zůstává čitelný jako Markdown, společné prvky jsou centralizované a je k dispozici lokální strukturální validace.
+Pilot WORLD 1 je připraven jako referenční LiaScript lekce ve větvi `experimental/pilot`. Další opravná iterace odstranila vedlejší formulář se `Submit` a sjednotila typografii obsahu i navigace. Zdroj zůstává čitelný jako Markdown, společné prvky jsou centralizované a je k dispozici lokální strukturální validace.
 
 ## Co bylo ověřeno
 
@@ -8,7 +8,7 @@ Pilot WORLD 1 je připraven jako referenční LiaScript lekce ve větvi `experim
 - Aktuální lokální `GAME-MACROS.md` úspěšně zpracoval oficiální LiaScript Exporter do JSON; export obsahoval atributové definice všech maker `@JSQ.*` bez wrapperů.
 - Exporter byl spuštěn i nad pilotní lekcí. Syntaxe lekce prošla, ale import z raw URL ještě stáhl starší vzdálený `GAME-MACROS.md`; úplné ověření aktuální kombinace vyžaduje push větve a opakování exportu.
 - Minimální sketch s importem aktuální p5js template úspěšně zpracoval tentýž Exporter. Template definuje `@P5.eval` a vytváří `new p5(sketch, div)`, tedy instanční kontext s prefixem `p5.`.
-- `python tools/validate_course.py` prošel: ověřuje soubory, UTF-8, code fences, metadata a importy pilotu, sadu maker, samostatné blockquoty karet, nepřítomnost wrapperů, progresivní pomoc, WORLD a lokální odkazy.
+- `python tools/validate_course.py` kontroluje soubory, UTF-8, code fences, metadata a importy pilotu, sadu maker, samostatné blockquoty karet, nepřítomnost wrapperů, progresivní pomoc, WORLD a lokální odkazy. Navíc odmítá checklist/task-list syntaxi i nativní kvízovou syntax uvnitř herní karty a hlídá globální systémový font stack.
 - `git diff --check` prošel bez chyb mezer a konců řádků.
 
 ## Provedené opravy
@@ -18,6 +18,8 @@ Pilot WORLD 1 je připraven jako referenční LiaScript lekce ve větvi `experim
 - Vzhled karet používá rámeček, textový název a symbol aktivity, ne pouze barvu; akcenty mají variantu pro tmavé schéma.
 - Karty nyní používají jen attribute comment a následující Markdown blockquote; v renderovatelném obsahu nezůstává párové `section` HTML ani uzavírací makro.
 - Complete Code a Bug Hunt skrývají nápovědy i opravu za postupnou nativní disclosure strukturou. Kvízy používají nativní `[[?]]`, skryté řešení a tlačítka odemčená po prvním chybném pokusu.
+- Možnosti, nápovědy a řešení kvízů už nejsou v blockquote kartách: tvoří souvislý nativní LiaScript single-choice blok. Tím mizí neúčelový formulář se dvěma položkami a tlačítkem `Submit`; v pilotu nezůstává žádný task-list.
+- `@JSQ.styles` nastavuje shodný systémový sans-serif stack pro obsah, formulářové prvky a selektory navigace/sidebaru/obsahu kapitol. Nepoužívá se externí font ani omezený webfontový subset, proto česká diakritika nemá přepínat do jiného fontu.
 - p5.js poznámka nyní ukazuje standardní `setup()`/`draw()` i LiaScript `p5.setup`/`p5.draw`.
 - Boss výslovně končí problémem, že objekt opustí canvas; motivuje tím následující lekci o podmínkách bez zavedení `if` do WORLD 1.
 
@@ -37,9 +39,9 @@ Pilot WORLD 1 je připraven jako referenční LiaScript lekce ve větvi `experim
 ## Doporučení pro pilotní test
 
 1. Pushni větev a znovu spusť Exporter i LiaScript Preview nad odkazem v `README.md`.
-2. Ověř, že se každá karta vykreslí jako blockquote s rámečkem a nikde se nezobrazí technický tag.
+2. Ověř, že se každá karta vykreslí jako blockquote s rámečkem a nikde se nezobrazí technický tag, samostatný `Submit` formulář ani checklist.
 3. Ověř, že Complete Code a Bug Hunt po prvním načtení ukazují jen zadání a kód; pomoc i řešení musí zůstat zavřené.
-4. Ověř na desktopu i mobilu import maker, všechna tlačítka `@P5.eval`, Stop a vykreslení canvasu.
+4. Ověř na desktopu i mobilu import maker, všechna tlačítka `Check`/nápovědy/řešení, `@P5.eval`, Stop, vykreslení canvasu a shodný font českých znaků v levém menu i obsahu.
 5. Nech několik studentů projít lekci bez nápovědy od učitele a zaznamenej, zda rozumějí prefixu `p5.` a chybě `x =+ speed`.
 
 ## Doporučený další krok

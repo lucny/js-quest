@@ -57,20 +57,20 @@ Potřebujeme tedy způsob, jak si program bude **pamatovat polohu**, kterou lze 
 > p5.circle(200, 150, 40);
 > ```
 >
-> <!-- data-hint-button="1" data-solution-button="1" -->
-> [( )] kruh bude větší
-> [(X)] kruh se posune doprava
-> [( )] kruh se posune dolů
-> [( )] nic se nezmění
->
-> [[?]] Podívej se, co znamenají první dva parametry `p5.circle(...)`.
-> [[?]] První parametr určuje polohu vlevo–vpravo, druhý nahoru–dolů.
->
-> ***
->
-> Hodnota `200` je první parametr, tedy vodorovná souřadnice středu kruhu. Kruh se proto posune doprava.
->
-> ***
+<!-- data-hint-button="1" data-solution-button="1" -->
+[( )] kruh bude větší
+[(X)] kruh se posune doprava
+[( )] kruh se posune dolů
+[( )] nic se nezmění
+
+[[?]] Podívej se, co znamenají první dva parametry `p5.circle(...)`.
+[[?]] První parametr určuje polohu vlevo–vpravo, druhý nahoru–dolů.
+
+***
+
+Hodnota `200` je první parametr, tedy vodorovná souřadnice středu kruhu. Kruh se proto posune doprava.
+
+***
 
 Číslo v prvním parametru určuje vodorovnou souřadnici středu kruhu.
 
@@ -161,20 +161,20 @@ Pravá strana se vyhodnotí a výsledek se uloží do proměnné vlevo.
 > x = x + 2;
 > ```
 >
-> <!-- data-hint-button="1" data-solution-button="1" -->
-> [( )] matematickou rovnici bez řešení
-> [( )] vytvoření nové proměnné `x`
-> [(X)] vezmi současné `x`, přičti 2 a výsledek znovu ulož do `x`
-> [( )] nastav `x` vždy na 2
->
-> [[?]] Při přiřazení se nejprve vyhodnotí pravá strana.
-> [[?]] Pravá strana obsahuje současné `x`; teprve potom se výsledek uloží zpět vlevo.
->
-> ***
->
-> Příkaz bere aktuální hodnotu `x`, přičte 2 a novou hodnotu opět uloží do proměnné `x`.
->
-> ***
+<!-- data-hint-button="1" data-solution-button="1" -->
+[( )] matematickou rovnici bez řešení
+[( )] vytvoření nové proměnné `x`
+[(X)] vezmi současné `x`, přičti 2 a výsledek znovu ulož do `x`
+[( )] nastav `x` vždy na 2
+
+[[?]] Při přiřazení se nejprve vyhodnotí pravá strana.
+[[?]] Pravá strana obsahuje současné `x`; teprve potom se výsledek uloží zpět vlevo.
+
+***
+
+Příkaz bere aktuální hodnotu `x`, přičte 2 a novou hodnotu opět uloží do proměnné `x`.
+
+***
 
 Příklad:
 
@@ -325,20 +325,20 @@ p5.draw = function () {
 >
 > Jaká bude hodnota `x`?
 >
-> <!-- data-hint-button="1" data-solution-button="1" -->
-> [( )] 13
-> [( )] 16
-> [(X)] 19
-> [( )] 30
->
-> [[?]] Začni hodnotou `x = 10` a sleduj vždy jen jeden průchod.
-> [[?]] Každé provedení přičte 3; po třech provedeních se 3 přičte třikrát.
->
-> ***
->
-> Hodnoty `x` jsou postupně 13, 16 a 19. Správná odpověď je proto 19.
->
-> ***
+<!-- data-hint-button="1" data-solution-button="1" -->
+[( )] 13
+[( )] 16
+[(X)] 19
+[( )] 30
+
+[[?]] Začni hodnotou `x = 10` a sleduj vždy jen jeden průchod.
+[[?]] Každé provedení přičte 3; po třech provedeních se 3 přičte třikrát.
+
+***
+
+Hodnoty `x` jsou postupně 13, 16 a 19. Správná odpověď je proto 19.
+
+***
 
 ---
 
@@ -413,20 +413,20 @@ Naproti tomu `x =+ speed` přiřadí do `x` kladnou hodnotu `speed`. Je syntakti
 >
 > Je-li `speed = 3`, co po příkazu `x =+ speed` platí?
 >
-> <!-- data-hint-button="1" data-solution-button="1" -->
-> [( )] `x` se zvětší o 3
-> [(X)] `x` dostane hodnotu 3
-> [( )] JavaScript vždy vyhodí syntax error
-> [( )] `x` dostane hodnotu -3
->
-> [[?]] Všimni si pořadí znaků: `=+` není `+=`.
-> [[?]] Pravá strana je kladná hodnota proměnné `speed`; celý výsledek se přiřadí do `x`.
->
-> ***
->
-> Při `speed = 3` se nejdřív vyhodnotí `+speed` jako 3 a pak se tato hodnota přiřadí do `x`.
->
-> ***
+<!-- data-hint-button="1" data-solution-button="1" -->
+[( )] `x` se zvětší o 3
+[(X)] `x` dostane hodnotu 3
+[( )] JavaScript vždy vyhodí syntax error
+[( )] `x` dostane hodnotu -3
+
+[[?]] Všimni si pořadí znaků: `=+` není `+=`.
+[[?]] Pravá strana je kladná hodnota proměnné `speed`; celý výsledek se přiřadí do `x`.
+
+***
+
+Při `speed = 3` se nejdřív vyhodnotí `+speed` jako 3 a pak se tato hodnota přiřadí do `x`.
+
+***
 
 ---
 
@@ -496,20 +496,20 @@ Po dokončení si zodpověz:
 >
 > Jaké budou nové hodnoty?
 >
-> <!-- data-hint-button="1" data-solution-button="1" -->
-> [( )] `x = 96`, `y = 52`
-> [(X)] `x = 104`, `y = 48`
-> [( )] `x = 104`, `y = 52`
-> [( )] `x = 400`, `y = -100`
->
-> [[?]] Počítej změnu `x` a změnu `y` odděleně.
-> [[?]] Ke kladné rychlosti se přičítá, záporná rychlost hodnotu zmenší.
->
-> ***
->
-> `x` se zvýší ze 100 o 4 na 104. `y` se sníží z 50 o 2 na 48.
->
-> ***
+<!-- data-hint-button="1" data-solution-button="1" -->
+[( )] `x = 96`, `y = 52`
+[(X)] `x = 104`, `y = 48`
+[( )] `x = 104`, `y = 52`
+[( )] `x = 400`, `y = -100`
+
+[[?]] Počítej změnu `x` a změnu `y` odděleně.
+[[?]] Ke kladné rychlosti se přičítá, záporná rychlost hodnotu zmenší.
+
+***
+
+`x` se zvýší ze 100 o 4 na 104. `y` se sníží z 50 o 2 na 48.
+
+***
 
 ---
 

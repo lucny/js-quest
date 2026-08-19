@@ -157,6 +157,23 @@ def validate_progressive_help(text: str) -> None:
     if text.count("[[?]]") < 2:
         fail("Pilot neobsahuje alespoň dvě nativní LiaScript nápovědy [[?]].")
 
+    if re.search(r"(?m)^\s*(?:>\s*)?[-*+]\s+\[[ xX]\]", text):
+        fail("Pilot obsahuje checklist/task-list syntaxi, která by vytvořila samostatný formulář.")
+
+    if re.search(r"(?m)^>\s*(?:\[\(|\[\[\?|\*\*\*)", text):
+        fail("Nativní kvíz, nápověda nebo řešení nesmí být uvnitř blockquotu herní karty.")
+
+
+def validate_typography(macro_text: str) -> None:
+    required_fonts = ('font-family:', '"Segoe UI"', '"Noto Sans"')
+    for token in required_fonts:
+        if token not in macro_text:
+            fail(f"GAME-MACROS.md postrádá globální typografickou pojistku {token!r}.")
+
+    for selector in ("body nav", "body aside", '[role="navigation"]', '[class*="sidebar"]'):
+        if selector not in macro_text:
+            fail(f"GAME-MACROS.md nepokrývá navigační selektor {selector!r} font-family pravidlem.")
+
 
 def validate_world(text: str) -> None:
     title = re.search(r"(?m)^# WORLD\s+(\d+)\s+—", text)
@@ -202,6 +219,7 @@ def run() -> int:
     validate_world(lesson_text)
     validate_no_lesson_macro_definitions(lesson_text)
     validate_progressive_help(lesson_text)
+    validate_typography(macro_text)
 
     for path in markdown_files:
         validate_local_links(path, read(path))

@@ -19,6 +19,7 @@
 - XP jsou motivační metadata, nikdy známka ani automaticky ověřený důkaz porozumění.
 - U otevřených aktivit COMPLETE, BUG, MISSION, BONUS a BOSS má student při prvním otevření vidět pouze zadání a editovatelný kód. Nápovědy a řešení schovej za postupné nativní disclosure prvky; první nápověda jen nasměruje, druhá pojmenuje koncept a řešení je poslední možnost.
 - U LiaScript kvízů používej `[[?]]` pro postupné nápovědy a nativní blok řešení oddělený hvězdičkami. Podle smyslu úlohy nastav `data-hint-button` a `data-solution-button`.
+- Možnosti kvízu, `[[?]]` i blok řešení zapisuj mimo blockquote herní karty jako jeden souvislý nativní LiaScript blok; nepoužívej v renderované lekci checklisty `- [ ]` ani `- [x]`, pokud nemají jasný didaktický účel.
 
 ## Autorské konvence
 
@@ -26,6 +27,7 @@
 - Společné vizuální prvky a makra patří do `GAME-MACROS.md`, ne do jednotlivých lekcí.
 - Neopakuj CSS nebo HTML maker v lekcích.
 - Herní karta je atributový komentář před samostatným Markdown blokem, ne dvojice maker otevírající a zavírající HTML element.
+- Globální font patří do `@JSQ.styles`; zachovej systémový stack s podporou Latin Extended pro obsah i navigační prvky.
 - Zachovej maximální čitelnost Markdownových zdrojů i mimo renderer LiaScriptu.
 - Nezaváděj do lekce koncept, který ještě nebyl vysvětlen. U tohoto pilotu nepřidávej `if`, odraz od okraje, pole ani objekty.
 

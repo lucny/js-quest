@@ -35,6 +35,20 @@
 - **Provedená oprava:** u otevřených úloh je pomoc nyní v postupně otevíraných standardních prvcích `details`/`summary`: nasměrování, konkrétnější koncept a až potom řešení. Skutečné LiaScript kvízy používají `[[?]]`, blok nativního řešení a tlačítka zpřístupněná po prvním chybném pokusu.
 - **Zdroj:** [LiaScript — details a summary](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L1666-L1694), [LiaScript — quiz hints a solution](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3789-L3896), [LiaScript — hint/solution buttons](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3957-L4014).
 
+## 2026-08-19 — Vedlejší formulář Submit u kvízů
+
+- **Problém:** po některých kvízech renderer zobrazil samostatný blok se dvěma nezaškrtnutými položkami a tlačítkem `Submit`.
+- **Příčina:** možnosti `[(…)]`, nápovědy `[[?]]` a řešení byly zapsány uvnitř blockquotu stylované herní karty. LiaScript je proto nevyhodnotil jako jeden souvislý single-choice kvíz a část syntaxe interpretoval jako samostatný generický formulář. V pilotní lekci se zároveň nenachází checklist syntaxe `- [ ]` ani `- [x]`.
+- **Provedená oprava:** blockquote nyní obsahuje pouze didaktický kontext karty. Bezprostředně za ním následuje souvislý nativní LiaScript single-choice kvíz včetně voleb, postupných nápověd a vysvětlení. Validátor odmítá checklisty i kvízovou syntaxi uvnitř blockquotu.
+- **Zdroj:** [LiaScript — single-choice quiz](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3275-L3316), [LiaScript — nápovědy a řešení](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3789-L4014), [LiaScript — task lists](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3006-L3042).
+
+## 2026-08-19 — Fallback fontu pro české znaky v navigaci
+
+- **Problém:** české znaky v levém menu a obsahu kapitol používaly jiný font než ostatní text.
+- **Příčina:** projekt nenačítal externí webfont ani vlastní `@font-face`; navigační komponenty tak dědily typografii rendereru jinak než obsah a pro znaky Latin Extended se mohl uplatnit glyph fallback.
+- **Provedená oprava:** `@JSQ.styles` nyní nastavuje pro dokument, ovládací prvky a navigační/sidebar/TOC selektory jednotný systémový stack `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif`. `Segoe UI` na Windows a `Noto Sans` jako další volba pokrývají českou diakritiku bez per-glyph fallbacku.
+- **Ověření zdroje:** v projektu nejsou další definice `font-family` ani `@font-face`; globální pravidlo je jediným zdrojem typografie.
+
 ## 2026-08-19 — Export pilotu zatím načítá starší vzdálené makro
 
 - **Problém:** Exporter pilotní lekce proběhl, ale jeho JSON obsahuje starší verzi `GAME-MACROS.md` s původními wrappery.
@@ -44,6 +58,6 @@
 
 ## Ověřená syntaxe
 
-Header s metadaty, `import:`, jednoduchá a parametrizovaná makra, blokové makro definice, HTML/CSS, single-choice kvízy, hinty/řešení a editovatelný kód odpovídají dokumentaci LiaScriptu. Pilot používá `@P5.eval` podle aktuální dokumentace p5js template.
+Header s metadaty, `import:`, jednoduchá a parametrizovaná makra, blokové makro definice, HTML/CSS, single-choice kvízy, hinty/řešení a editovatelný kód odpovídají dokumentaci LiaScriptu. Pilot používá `@P5.eval` podle aktuální dokumentace p5js template. Kvízy jsou mimo blockquote herních karet a pilot neobsahuje task-list syntaxi.
 
 Oficiální LiaScript Exporter úspěšně zpracoval aktuální lokální `GAME-MACROS.md` do JSON a potvrdil jeho atributová makra. Export pilotu ověřil syntaxi lekce, ale před pushem importoval starší vzdálenou verzi maker. Vizuální render s aktuálními kartami je proto nutné po pushi ověřit znovu v LiaScriptu.
