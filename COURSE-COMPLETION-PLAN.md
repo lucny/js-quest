@@ -30,7 +30,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 7
 
 - Plán: myš/klávesnice → událost → stav → jednoduchá hra → Micro Game.
-- Stav: čeká na WORLD 6.
+- Stav: dokončeno; validátor, Exporter, regresní audit a checkpoint commit.
 
 # WORLD 8
 

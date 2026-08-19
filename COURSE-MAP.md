@@ -40,3 +40,10 @@
 2. [Entita mění stav](06-objects/02-change-properties.md)
 3. [Co entita umí](06-objects/03-methods-and-many.md)
 4. [Creature System](06-objects/04-creature-system.md)
+
+## WORLD 7 — Interaction
+
+1. [Program vnímá myš](07-interaction/01-mouse.md)
+2. [Kliknutí mění stav](07-interaction/02-click-state.md)
+3. [Hráč volí směr](07-interaction/03-keyboard.md)
+4. [Micro Game](07-interaction/04-micro-game.md)
