@@ -20,6 +20,8 @@ REQUIRED_FILES = (
 )
 LESSON = ROOT / "01-variables" / "01-moving-ball.md"
 MACROS = ROOT / "GAME-MACROS.md"
+STUDENT_LESSONS = tuple(sorted(ROOT.glob("[0-9][0-9]-*/*.md")))
+TASK_LIST = re.compile(r"(?m)^[-*+] \[[ xX]\]")
 REQUIRED_MACROS = {
     "styles",
     "predict",
@@ -150,18 +152,16 @@ def validate_progressive_help(text: str) -> None:
     if text.count("<details>") != text.count("</details>"):
         fail("Pilot má nevyvážené prvky <details> pro skrytou pomoc.")
 
-    for attribute in ('data-hint-button="1"', 'data-solution-button="1"'):
-        if attribute not in text:
-            fail(f"Pilotní kvízy nepoužívají {attribute}.")
-
-    if text.count("[[?]]") < 2:
-        fail("Pilot neobsahuje alespoň dvě nativní LiaScript nápovědy [[?]].")
-
-    if re.search(r"(?m)^\s*(?:>\s*)?[-*+]\s+\[[ xX]\]", text):
-        fail("Pilot obsahuje checklist/task-list syntaxi, která by vytvořila samostatný formulář.")
-
-    if re.search(r"(?m)^>\s*(?:\[\(|\[\[\?|\*\*\*)", text):
+    if re.search(r"(?m)^>[ \t]*(?:\[\(|\[\[\?|\*\*\*)", text):
         fail("Nativní kvíz, nápověda nebo řešení nesmí být uvnitř blockquotu herní karty.")
+
+
+def validate_no_task_lists(path: Path, text: str) -> None:
+    if TASK_LIST.search(text):
+        fail(
+            f"{path.relative_to(ROOT)} obsahuje LiaScript Task (`- [ ]`, `- [x]` nebo `- [X]`). "
+            "Pilotní studentské lekce task-listy nesmí používat."
+        )
 
 
 def validate_typography(macro_text: str) -> None:
@@ -220,6 +220,9 @@ def run() -> int:
     validate_no_lesson_macro_definitions(lesson_text)
     validate_progressive_help(lesson_text)
     validate_typography(macro_text)
+
+    for path in STUDENT_LESSONS:
+        validate_no_task_lists(path, read(path))
 
     for path in markdown_files:
         validate_local_links(path, read(path))

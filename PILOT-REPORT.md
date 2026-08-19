@@ -17,8 +17,8 @@ Pilot WORLD 1 je připraven jako referenční LiaScript lekce ve větvi `experim
 - Sada maker je jednotná pro `PREDICT`, `EXPERIMENT`, `COMPLETE`, `BUG`, `MISSION`, `BONUS`, `QUIZ`, `BOSS`, `FLAG` a `XP`. Zachován je i kompatibilní alias `@JSQ.flagbox`.
 - Vzhled karet používá rámeček, textový název a symbol aktivity, ne pouze barvu; akcenty mají variantu pro tmavé schéma.
 - Karty nyní používají jen attribute comment a následující Markdown blockquote; v renderovatelném obsahu nezůstává párové `section` HTML ani uzavírací makro.
-- Complete Code a Bug Hunt skrývají nápovědy i opravu za postupnou nativní disclosure strukturou. Kvízy používají nativní `[[?]]`, skryté řešení a tlačítka odemčená po prvním chybném pokusu.
-- Možnosti, nápovědy a řešení kvízů už nejsou v blockquote kartách: tvoří souvislý nativní LiaScript single-choice blok. Tím mizí neúčelový formulář se dvěma položkami a tlačítkem `Submit`; v pilotu nezůstává žádný task-list.
+- Complete Code a Bug Hunt skrývají nápovědy i opravu za postupnou nativní disclosure strukturou. Kvízy používají pouze single-choice volby `[( )]` / `[(X)]`; nápověda a vysvětlení jsou skryté ve standardních `details` blocích.
+- Přesný audit vyloučil LiaScript Task syntax v pilotu. Text z formuláře se `Submit` vytvářely nepropojené řádky `[[?]]` (včetně dvojice „Začni hodnotou…“ / „Každé provedení…“); byly nahrazeny neinteraktivními bloky `details`/`summary`. V `01-moving-ball.md` nezůstává žádný task-list ani `[[?]]`.
 - `@JSQ.styles` nastavuje shodný systémový sans-serif stack pro obsah, formulářové prvky a selektory navigace/sidebaru/obsahu kapitol. Nepoužívá se externí font ani omezený webfontový subset, proto česká diakritika nemá přepínat do jiného fontu.
 - p5.js poznámka nyní ukazuje standardní `setup()`/`draw()` i LiaScript `p5.setup`/`p5.draw`.
 - Boss výslovně končí problémem, že objekt opustí canvas; motivuje tím následující lekci o podmínkách bez zavedení `if` do WORLD 1.

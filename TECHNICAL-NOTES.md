@@ -38,8 +38,9 @@
 ## 2026-08-19 — Vedlejší formulář Submit u kvízů
 
 - **Problém:** po některých kvízech renderer zobrazil samostatný blok se dvěma nezaškrtnutými položkami a tlačítkem `Submit`.
-- **Příčina:** možnosti `[(…)]`, nápovědy `[[?]]` a řešení byly zapsány uvnitř blockquotu stylované herní karty. LiaScript je proto nevyhodnotil jako jeden souvislý single-choice kvíz a část syntaxe interpretoval jako samostatný generický formulář. V pilotní lekci se zároveň nenachází checklist syntaxe `- [ ]` ani `- [x]`.
-- **Provedená oprava:** blockquote nyní obsahuje pouze didaktický kontext karty. Bezprostředně za ním následuje souvislý nativní LiaScript single-choice kvíz včetně voleb, postupných nápověd a vysvětlení. Validátor odmítá checklisty i kvízovou syntaxi uvnitř blockquotu.
+- **Přesný audit zdroje:** žádný řádek `01-variables/01-moving-ball.md` ani `GAME-MACROS.md` nezačínal task-list syntaxí `- [ ]`, `- [x]`, `- [X]`, `* […]` nebo `+ […]`. Text ze samostatného formuláře pocházel z dvojic řádků `[[?]]` (například ř. 334–335: „Začni hodnotou…“ a „Každé provedení…“). V aktuálním Preview tyto nativní hinty nebyly připojené k předchozímu single-choice kvízu a renderer je vyložil jako vlastní odpovědní rozhraní.
+- **Provedená oprava:** všech 12 řádků `[[?]]` bylo z pilotu odstraněno. Každá dvojice nápověd i následné vysvětlení je nyní ve standardním `details`/`summary` bloku bez vstupních polí a tlačítka `Submit`. Volby `[( )]` / `[(X)]` zůstávají jediným interaktivním rozhraním kvízu.
+- **Prevence:** validátor kontroluje každou studentskou lekci adresářů `NN-*` přes přesný vzor `^[-*+] \[[ xX]\]` a při nalezení LiaScript Task selže.
 - **Zdroj:** [LiaScript — single-choice quiz](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3275-L3316), [LiaScript — nápovědy a řešení](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3789-L4014), [LiaScript — task lists](https://raw.githubusercontent.com/LiaScript/docs/master/README.md#L3006-L3042).
 
 ## 2026-08-19 — Fallback fontu pro české znaky v navigaci
@@ -58,6 +59,6 @@
 
 ## Ověřená syntaxe
 
-Header s metadaty, `import:`, jednoduchá a parametrizovaná makra, blokové makro definice, HTML/CSS, single-choice kvízy, hinty/řešení a editovatelný kód odpovídají dokumentaci LiaScriptu. Pilot používá `@P5.eval` podle aktuální dokumentace p5js template. Kvízy jsou mimo blockquote herních karet a pilot neobsahuje task-list syntaxi.
+Header s metadaty, `import:`, jednoduchá a parametrizovaná makra, blokové makro definice, HTML/CSS, single-choice kvízy, skrytá vysvětlení a editovatelný kód odpovídají dokumentaci LiaScriptu. Pilot používá `@P5.eval` podle aktuální dokumentace p5js template. Kvízy jsou mimo blockquote herních karet a pilot neobsahuje task-list syntaxi ani řádky `[[?]]`.
 
 Oficiální LiaScript Exporter úspěšně zpracoval aktuální lokální `GAME-MACROS.md` do JSON a potvrdil jeho atributová makra. Export pilotu ověřil syntaxi lekce, ale před pushem importoval starší vzdálenou verzi maker. Vizuální render s aktuálními kartami je proto nutné po pushi ověřit znovu v LiaScriptu.
