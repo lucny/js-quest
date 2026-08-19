@@ -102,23 +102,31 @@ def main_header(text: str) -> str | None:
     return stripped[4:end.start()] if end is not None else None
 
 
-def validate_lesson_header(text: str) -> None:
+def validate_lesson_header(text: str, path: Path = LESSON) -> None:
     header = main_header(text)
     if header is None:
-        fail("Pilotní lekce nemá uzavřený hlavní HTML komentář s metadaty.")
+        fail(f"{path.relative_to(ROOT)} nemá uzavřený hlavní HTML komentář s metadaty.")
         return
 
     for field in ("author", "version", "language", "comment"):
         if not re.search(rf"(?m)^\s*{field}:\s*\S", header):
-            fail(f"V hlavní hlavičce lekce chybí metadata '{field}:'.")
+            fail(f"{path.relative_to(ROOT)}: v hlavní hlavičce lekce chybí metadata '{field}:'.")
 
     if "language:   cs" not in header and "language: cs" not in header:
-        fail("Pilotní lekce nemá nastavený jazyk cs.")
+        fail(f"{path.relative_to(ROOT)} nemá nastavený jazyk cs.")
 
-    if not re.search(r"https://raw\.githubusercontent\.com/lucny/js-quest/experimental/(pilot|world2)/GAME-MACROS\.md", header):
-        fail("V hlavní hlavičce lekce chybí import sdílených GAME-MACROS.md.")
-    if "https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md" not in header:
-        fail("V hlavní hlavičce lekce chybí import p5js template.")
+    if not re.search(r"https://raw\.githubusercontent\.com/lucny/js-quest/experimental/(pilot|world2|course-completion)/GAME-MACROS\.md", header):
+        fail(f"{path.relative_to(ROOT)}: v hlavní hlavičce lekce chybí import sdílených GAME-MACROS.md.")
+
+    is_web_lesson = path.parent.name == "08-web"
+    required_template = (
+        "https://raw.githubusercontent.com/liaTemplates/WebDev/master/README.md"
+        if is_web_lesson
+        else "https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md"
+    )
+    template_name = "WebDev" if is_web_lesson else "p5js"
+    if required_template not in header:
+        fail(f"{path.relative_to(ROOT)}: v hlavní hlavičce lekce chybí import {template_name} template.")
 
 
 def validate_macros(macro_text: str, lesson_text: str) -> None:
@@ -201,7 +209,7 @@ def validate_world_two() -> None:
         fail("WORLD 2 musí obsahovat právě čtyři stanovené lekce v 02-decisions.")
     for path in world_two:
         text = read(path)
-        validate_lesson_header(text)
+        validate_lesson_header(text, path)
         if "@JSQ.world(2, Decisions)" not in text:
             fail(f"{path.relative_to(ROOT)} nemá označení WORLD 2 — Decisions.")
         if "@JSQ.mission" not in text or "@JSQ.flag" not in text:
@@ -253,6 +261,19 @@ def validate_no_lesson_macro_definitions(text: str) -> None:
         fail("Pilot definuje makra lokálně; společná makra patří do GAME-MACROS.md.")
 
 
+def validate_mission_scaffold(path: Path, text: str) -> None:
+    """Mission remains a light structural check, not a LiaScript parser."""
+    for match in re.finditer(r"(?m)^@JSQ\.mission\s*$", text):
+        next_section = re.search(r"(?m)^---\s*$|^##\s+", text[match.end():])
+        end = match.end() + next_section.start() if next_section else len(text)
+        mission = text[match.end():end]
+        runnable = "@P5.eval" in mission or "@WebDev.HTML_JS" in mission
+        if "```js" not in mission or not runnable:
+            fail(f"{path.relative_to(ROOT)}: Mission nemá runnable JS scaffold.")
+        if "TODO" not in mission:
+            fail(f"{path.relative_to(ROOT)}: Mission scaffold neobsahuje TODO.")
+
+
 ERRORS: list[str] = []
 
 
@@ -276,8 +297,10 @@ def run() -> int:
 
     for path in STUDENT_LESSONS:
         student_text = read(path)
+        validate_lesson_header(student_text, path)
         validate_no_task_lists(path, student_text)
         validate_multiple_choice_quizzes(path, student_text)
+        validate_mission_scaffold(path, student_text)
     validate_world_two()
 
     for path in markdown_files:

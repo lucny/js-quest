@@ -47,3 +47,10 @@
 2. [Kliknutí mění stav](07-interaction/02-click-state.md)
 3. [Hráč volí směr](07-interaction/03-keyboard.md)
 4. [Micro Game](07-interaction/04-micro-game.md)
+
+## WORLD 8 — Web / DOM
+
+1. [HTML a DOM](08-web/01-html-dom.md)
+2. [Selektor a stav panelu](08-web/02-query-selector.md)
+3. [Událost mění stav](08-web/03-events-input.md)
+4. [Mini Web App](08-web/04-mini-web-app.md)

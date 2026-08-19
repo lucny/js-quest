@@ -35,7 +35,8 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 8
 
 - Plán: HTML → selector → změna DOM → click/input → malá webová aplikace.
-- Stav: čeká na WORLD 7; před tvorbou ověřit dostupnou LiaScript Web/DOM infrastrukturu.
+- Stav: dokončeno; infrastruktura ověřena, validátor, Exporter, regresní audit a checkpoint commit.
+- Infrastruktura: oficiální template `liaTemplates/WebDev` s `@WebDev.HTML_JS`; JavaScript se spouští až po vložení HTML do izolovaného výstupu.
 
 # WORLD 9
 
@@ -48,13 +49,13 @@ Po každém WORLDu: validace, Exporter pro každou lekci, regresní search a did
 
 # Otevřené problémy
 
-- Web/DOM prostředí musí být před WORLD 8 ověřeno oficiální dokumentací/template.
 - Finální vizuální kontrola vyžaduje publikovanou raw větev a LiaScript Preview.
 
 # Rozhodnutí
 
 - WORLD 3–7 budou používat existující p5.js template jen tehdy, když vizualizace zjednoduší koncept.
 - Kvízy zůstávají single-choice `[( )]` / `[(X)]`; nápovědy a řešení jsou `details`.
+- WORLD 8 používá ověřený WebDev template, nikoli lokální HTML/DOM runtime.
 
 # Dokončeno
 

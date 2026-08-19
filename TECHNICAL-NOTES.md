@@ -59,6 +59,13 @@
 
 ## Ověřená syntaxe
 
+## 2026-08-19 — WORLD 8 používá oficiální WebDev template
+
+- **Rozhodnutí:** lekce `08-web/` importují oficiální `liaTemplates/WebDev` a pro živé DOM příklady používají `@WebDev.HTML_JS`.
+- **Ověření:** template přijímá po sobě jdoucí HTML a JavaScript code block; vloží HTML do vlastního výstupu a až potom vyhodnotí JavaScript. `document.querySelector(...)` proto pracuje s již existujícím DOM.
+- **Důsledek:** nevzniká vlastní runtime, framework ani nestabilní lokální wrapper. P5 template zůstává pro předchozí herní a vizualizační lekce.
+- **Zdroj:** [oficiální WebDev template](https://github.com/LiaTemplates/WebDev), [LiaScript WebDev — HTML, CSS a JavaScript](https://liascript.github.io/blog/webdev-html-css-js-in-liascript/).
+
 ## 2026-08-19 — WORLD 2 používal vzdálený template jiné větve
 
 - **Příčina:** všechny čtyři lekce WORLD 2 importovaly `GAME-MACROS.md` z raw URL větve `experimental/pilot`. Lokální `GAME-MACROS.md` s globálním systémovým font stackem se tak v Preview větve WORLD 2 nepoužil jako jeho sdílený template.
