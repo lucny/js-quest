@@ -17,6 +17,13 @@ REQUIRED_FILES = (
     "README.md",
     "TECHNICAL-NOTES.md",
     "01-variables/01-moving-ball.md",
+    "02-decisions/01-boolean-questions.md",
+    "02-decisions/02-if.md",
+    "02-decisions/03-bounce-and-logic.md",
+    "02-decisions/04-zones.md",
+    "COURSE-MAP.md",
+    "WORLD2-TEST.md",
+    "WORLD2-REPORT.md",
 )
 LESSON = ROOT / "01-variables" / "01-moving-ball.md"
 MACROS = ROOT / "GAME-MACROS.md"
@@ -185,6 +192,30 @@ def validate_multiple_choice_quizzes(path: Path, text: str) -> None:
         fail("Possible accidental second multiple-choice quiz after single-choice quiz.")
 
 
+def validate_world_two() -> None:
+    world_two = sorted(ROOT.glob("02-decisions/*.md"))
+    expected = {
+        "01-boolean-questions.md",
+        "02-if.md",
+        "03-bounce-and-logic.md",
+        "04-zones.md",
+    }
+    if {path.name for path in world_two} != expected:
+        fail("WORLD 2 musí obsahovat právě čtyři stanovené lekce v 02-decisions.")
+    for path in world_two:
+        text = read(path)
+        validate_lesson_header(text)
+        if "@JSQ.world(2, Decisions)" not in text:
+            fail(f"{path.relative_to(ROOT)} nemá označení WORLD 2 — Decisions.")
+        if "@JSQ.mission" not in text or "@JSQ.flag" not in text:
+            fail(f"{path.relative_to(ROOT)} postrádá Mission nebo Flag.")
+        if re.search(r"\[\[[?Xx ]\]\]", text):
+            fail(f"{path.relative_to(ROOT)} obsahuje zakázanou LiaScript quiz/hint syntax [[...]].")
+    boss = ROOT / "02-decisions" / "04-zones.md"
+    if boss.is_file() and "@JSQ.boss" not in read(boss):
+        fail("Závěrečná lekce WORLD 2 postrádá Boss aktivitu.")
+
+
 def validate_typography(macro_text: str) -> None:
     required_fonts = ('font-family:', '"Segoe UI"', '"Noto Sans"')
     for token in required_fonts:
@@ -246,6 +277,7 @@ def run() -> int:
         student_text = read(path)
         validate_no_task_lists(path, student_text)
         validate_multiple_choice_quizzes(path, student_text)
+    validate_world_two()
 
     for path in markdown_files:
         validate_local_links(path, read(path))

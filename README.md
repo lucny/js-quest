@@ -6,7 +6,9 @@ Technologie: [LiaScript](https://liascript.github.io/) pro interaktivní Markdow
 
 ## Struktura
 
-- [01-variables/01-moving-ball.md](01-variables/01-moving-ball.md) — pilotní lekce WORLD 1: proměnné, přiřazení, rychlost a pohyb.
+- [COURSE-MAP.md](COURSE-MAP.md) — přehled WORLD 1 — Variables a WORLD 2 — Decisions.
+- [01-variables/01-moving-ball.md](01-variables/01-moving-ball.md) — WORLD 1: proměnné, přiřazení, rychlost a pohyb.
+- [02-decisions/01-boolean-questions.md](02-decisions/01-boolean-questions.md) — WORLD 2: booleanové výrazy, `if`, logické operátory, odrazy a zóny.
 - [GAME-DESIGN.md](GAME-DESIGN.md) — didaktický a herní návrh.
 - [GAME-MACROS.md](GAME-MACROS.md) — společná LiaScript makra a vzhled aktivit.
 - [AUTHORING-GUIDE.md](AUTHORING-GUIDE.md) — pravidla pro nové lekce.
@@ -31,7 +33,7 @@ python tools/validate_course.py
 git diff --check
 ```
 
-Validátor kontroluje povinné soubory, UTF-8, code fences, hlavičku a importy pilotu, sadu `@JSQ` maker, párování karet, označení WORLD a lokální odkazy. Nenahrazuje render LiaScriptu ani manuální ověření interakce p5.js.
+Validátor kontroluje povinné soubory, UTF-8, code fences, hlavičky a importy, sadu `@JSQ` maker, párování karet, označení WORLD, zakázané task/quiz konstrukce a lokální odkazy. Nenahrazuje render LiaScriptu ani manuální ověření interakce p5.js.
 
 ## Nová lekce
 
