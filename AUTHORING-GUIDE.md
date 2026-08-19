@@ -110,10 +110,11 @@ Příklad:
 > [( )] 15
 > [(X)] 30
 > [( )] 25
-@JSQ.end
 ```
 
 Potom může následovat experiment nebo vysvětlení.
+
+Makro typu aktivity vždy stojí samostatně před blockquotem. Vloží atributový komentář pro tento jediný blok; nikdy nepoužívejte dvojici maker, která otevírá a zavírá HTML element přes více Markdown bloků.
 
 ---
 
@@ -129,6 +130,8 @@ LiaScript podporuje mimo jiné:
 - generic quiz.
 
 Používejte nápovědy tam, kde mají studenta vrátit k principu, nikoli rovnou prozradit odpověď.
+
+U kvízů používejte nativní postupnou pomoc: `[[?]]` pro nápovědy a blok mezi dvěma řádky s alespoň třemi hvězdičkami pro skryté vysvětlení řešení. `data-hint-button="1"` a `data-solution-button="1"` zpřístupní příslušné ovládání po prvním chybném pokusu.
 
 Příklad single choice:
 

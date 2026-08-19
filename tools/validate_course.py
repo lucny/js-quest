@@ -31,7 +31,6 @@ REQUIRED_MACROS = {
     "quiz",
     "boss",
     "flag",
-    "end",
     "xp",
     "codeflag",
     "thinkflag",
@@ -84,8 +83,8 @@ def main_header(text: str) -> str | None:
     stripped = text.lstrip("\ufeff\n\r \t")
     if not stripped.startswith("<!--"):
         return None
-    end = stripped.find("-->")
-    return stripped[4:end] if end != -1 else None
+    end = re.search(r"(?m)^-->\s*$", stripped)
+    return stripped[4:end.start()] if end is not None else None
 
 
 def validate_lesson_header(text: str) -> None:
@@ -128,17 +127,35 @@ def validate_macros(macro_text: str, lesson_text: str) -> None:
     if unknown:
         fail(f"Pilot používá neznámá makra JSQ: {', '.join(sorted(unknown))}.")
 
-    cards = sum(
-        len(re.findall(rf"(?m)^@JSQ\.{name}\s*$", lesson_text))
-        for name in CARD_MACROS
-    )
-    ends = len(re.findall(r"(?m)^@JSQ\.end\s*$", lesson_text))
-    if cards != ends:
-        fail(f"Pilot otevírá {cards} karet, ale obsahuje {ends} uzavření @JSQ.end.")
-
     for name in CARD_MACROS:
         if not re.search(rf"(?m)^@JSQ\.{name}\s*$", lesson_text):
             fail(f"Pilot neobsahuje požadovaný typ aktivity @{name}.")
+        if not re.search(rf"(?m)^@JSQ\.{name}\s*$\n>", lesson_text):
+            fail(f"Karta @{name} není následovaná samostatným Markdown blockquotem.")
+
+    for path, text in ((MACROS, macro_text), (LESSON, lesson_text)):
+        relative = path.relative_to(ROOT)
+        legacy_closing_macro = "@JSQ." + "end"
+        if legacy_closing_macro in text:
+            fail(f"{relative} stále používá zastaralé uzavírací makro.")
+        if re.search(r"</?section\b", text, flags=re.IGNORECASE):
+            fail(f"{relative} obsahuje HTML section element.")
+
+
+def validate_progressive_help(text: str) -> None:
+    for heading in ("Nápověda:", "Řešení:"):
+        if heading in text:
+            fail(f"Pilot obsahuje přímo viditelný nadpis '{heading}'.")
+
+    if text.count("<details>") != text.count("</details>"):
+        fail("Pilot má nevyvážené prvky <details> pro skrytou pomoc.")
+
+    for attribute in ('data-hint-button="1"', 'data-solution-button="1"'):
+        if attribute not in text:
+            fail(f"Pilotní kvízy nepoužívají {attribute}.")
+
+    if text.count("[[?]]") < 2:
+        fail("Pilot neobsahuje alespoň dvě nativní LiaScript nápovědy [[?]].")
 
 
 def validate_world(text: str) -> None:
@@ -184,6 +201,7 @@ def run() -> int:
     validate_macros(macro_text, lesson_text)
     validate_world(lesson_text)
     validate_no_lesson_macro_definitions(lesson_text)
+    validate_progressive_help(lesson_text)
 
     for path in markdown_files:
         validate_local_links(path, read(path))

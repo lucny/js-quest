@@ -38,47 +38,28 @@
   .jsq-flag { --jsq-accent: #86efac; }
 }
 
-.jsq-xp,
-.jsq-badge {
-  display: inline-block;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 0.08rem 0.48rem;
-  margin-left: 0.35rem;
-  font-size: 0.78em;
-  font-weight: 700;
-  line-height: 1.35;
-  vertical-align: middle;
-}
-
-.jsq-world {
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
 </style>
 @end
 
-@JSQ.predict:    <section class="jsq-card jsq-predict">
-@JSQ.experiment: <section class="jsq-card jsq-experiment">
-@JSQ.complete:   <section class="jsq-card jsq-complete">
-@JSQ.bug:        <section class="jsq-card jsq-bug">
-@JSQ.mission:    <section class="jsq-card jsq-mission">
-@JSQ.bonus:      <section class="jsq-card jsq-bonus">
-@JSQ.quiz:       <section class="jsq-card jsq-quiz">
-@JSQ.boss:       <section class="jsq-card jsq-boss">
-@JSQ.flag:       <section class="jsq-card jsq-flag">
+@JSQ.predict:    <!-- class="jsq-card jsq-predict" -->
+@JSQ.experiment: <!-- class="jsq-card jsq-experiment" -->
+@JSQ.complete:   <!-- class="jsq-card jsq-complete" -->
+@JSQ.bug:        <!-- class="jsq-card jsq-bug" -->
+@JSQ.mission:    <!-- class="jsq-card jsq-mission" -->
+@JSQ.bonus:      <!-- class="jsq-card jsq-bonus" -->
+@JSQ.quiz:       <!-- class="jsq-card jsq-quiz" -->
+@JSQ.boss:       <!-- class="jsq-card jsq-boss" -->
+@JSQ.flag:       <!-- class="jsq-card jsq-flag" -->
 @JSQ.flagbox:    @JSQ.flag
-@JSQ.end:        </section>
 
-@JSQ.xp: <span class="jsq-xp">+@0 XP</span>
+@JSQ.xp: +@0 XP
 
-@JSQ.codeflag:  <span class="jsq-badge">🟦 CODE FLAG</span>
-@JSQ.thinkflag: <span class="jsq-badge">🟨 THINK FLAG</span>
-@JSQ.buildflag: <span class="jsq-badge">🟥 BUILD FLAG</span>
-@JSQ.worldflag: <span class="jsq-badge">🏴 WORLD FLAG</span>
+@JSQ.codeflag:  🟦 CODE FLAG
+@JSQ.thinkflag: 🟨 THINK FLAG
+@JSQ.buildflag: 🟥 BUILD FLAG
+@JSQ.worldflag: 🏴 WORLD FLAG
 
-@JSQ.world: <span class="jsq-world">WORLD @0 · @1</span>
+@JSQ.world: **WORLD @0 · @1**
 
 -->
 
@@ -110,7 +91,7 @@ Potom na začátku lekce jednou zavolejte:
 
 ## Autorský zápis
 
-Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
+Každé makro vloží atributový komentář pro bezprostředně následující Markdown blok. Karta proto nepoužívá párové HTML elementy ani žádné uzavírací makro.
 
 ### Predict
 
@@ -119,7 +100,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **❓ PREDICT** @JSQ.xp(1)
 >
 > Kód zatím nespouštěj. Co podle tebe nastane?
-@JSQ.end
 ```
 
 ### Experiment
@@ -129,7 +109,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **🧪 EXPERIMENT**
 >
 > Změň jedinou hodnotu a popiš, co se stalo.
-@JSQ.end
 ```
 
 ### Complete Code
@@ -139,7 +118,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **🔧 COMPLETE CODE** @JSQ.xp(2)
 >
 > Doplň řádek označený `TODO`.
-@JSQ.end
 ```
 
 ### Bug Hunt
@@ -149,7 +127,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **🐞 BUG HUNT** @JSQ.xp(2)
 >
 > Najdi a oprav chybu.
-@JSQ.end
 ```
 
 ### Mission
@@ -159,7 +136,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **🎯 MISSION** @JSQ.xp(4)
 >
 > Specifikace úlohy...
-@JSQ.end
 ```
 
 ### Bonus
@@ -169,7 +145,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **💎 SIDE QUEST** @JSQ.xp(3)
 >
 > Dobrovolné rozšíření...
-@JSQ.end
 ```
 
 ### Boss
@@ -179,7 +154,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > **🏆 BOSS** @JSQ.xp(10)
 >
 > Syntetická úloha...
-@JSQ.end
 ```
 
 ### Vlajka
@@ -189,7 +163,6 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 > @JSQ.buildflag
 >
 > Dokážu samostatně použít proměnné k řízení pohybu.
-@JSQ.end
 ```
 
 ---

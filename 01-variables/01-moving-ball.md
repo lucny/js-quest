@@ -57,12 +57,21 @@ Potřebujeme tedy způsob, jak si program bude **pamatovat polohu**, kterou lze 
 > p5.circle(200, 150, 40);
 > ```
 >
+> <!-- data-hint-button="1" data-solution-button="1" -->
 > [( )] kruh bude větší
 > [(X)] kruh se posune doprava
 > [( )] kruh se posune dolů
 > [( )] nic se nezmění
+>
+> [[?]] Podívej se, co znamenají první dva parametry `p5.circle(...)`.
+> [[?]] První parametr určuje polohu vlevo–vpravo, druhý nahoru–dolů.
+>
+> ***
+>
+> Hodnota `200` je první parametr, tedy vodorovná souřadnice středu kruhu. Kruh se proto posune doprava.
+>
+> ***
 
-@JSQ.end
 Číslo v prvním parametru určuje vodorovnou souřadnici středu kruhu.
 
 Ale stále je to jen pevná hodnota.
@@ -80,7 +89,6 @@ Ale stále je to jen pevná hodnota.
 >
 > Co zůstává stejné a co se mění?
 
-@JSQ.end
 ```js
 let x = 80;
 
@@ -153,12 +161,21 @@ Pravá strana se vyhodnotí a výsledek se uloží do proměnné vlevo.
 > x = x + 2;
 > ```
 >
+> <!-- data-hint-button="1" data-solution-button="1" -->
 > [( )] matematickou rovnici bez řešení
 > [( )] vytvoření nové proměnné `x`
 > [(X)] vezmi současné `x`, přičti 2 a výsledek znovu ulož do `x`
 > [( )] nastav `x` vždy na 2
+>
+> [[?]] Při přiřazení se nejprve vyhodnotí pravá strana.
+> [[?]] Pravá strana obsahuje současné `x`; teprve potom se výsledek uloží zpět vlevo.
+>
+> ***
+>
+> Příkaz bere aktuální hodnotu `x`, přičte 2 a novou hodnotu opět uloží do proměnné `x`.
+>
+> ***
 
-@JSQ.end
 Příklad:
 
 ```text
@@ -176,7 +193,6 @@ po příkazu:    x = 82
 >
 > Na místě `TODO` doplň jediný příkaz tak, aby se hodnota `x` při každém průchodu `draw()` zvětšila o 2.
 
-@JSQ.end
 ```js
 let x = 80;
 
@@ -193,17 +209,31 @@ p5.draw = function () {
 ```
 @P5.eval
 
-Nápověda:
+<details>
 
-```text
-nové x = staré x + 2
-```
+<summary>Pomoc po vlastním pokusu</summary>
 
-Řešení si zobraz až po vlastním pokusu:
+**Nápověda 1.** Která proměnná určuje vodorovnou polohu kruhu?
+
+<details>
+
+<summary>Potřebuji konkrétnější nápovědu</summary>
+
+**Nápověda 2.** Nová hodnota `x` musí vzniknout ze staré hodnoty `x`.
+
+<details>
+
+<summary>Zobrazit jedno možné řešení</summary>
 
 ```js
 x = x + 2;
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ---
 
@@ -256,7 +286,6 @@ Tím získáme dvě samostatně měnitelné části stavu.
 >
 > Před spuštěním poslední varianty nejprve odhadni, co udělá záporná rychlost.
 
-@JSQ.end
 ```js
 let x = 80;
 let speed = 3;
@@ -296,12 +325,21 @@ p5.draw = function () {
 >
 > Jaká bude hodnota `x`?
 >
+> <!-- data-hint-button="1" data-solution-button="1" -->
 > [( )] 13
 > [( )] 16
 > [(X)] 19
 > [( )] 30
+>
+> [[?]] Začni hodnotou `x = 10` a sleduj vždy jen jeden průchod.
+> [[?]] Každé provedení přičte 3; po třech provedeních se 3 přičte třikrát.
+>
+> ***
+>
+> Hodnoty `x` jsou postupně 13, 16 a 19. Správná odpověď je proto 19.
+>
+> ***
 
-@JSQ.end
 ---
 
 ## BUG HUNT — Dva znaky, jiný význam
@@ -315,7 +353,6 @@ p5.draw = function () {
 >
 > Najdi chybu a oprav ji.
 
-@JSQ.end
 ```js
 let x = 80;
 let speed = 3;
@@ -333,7 +370,21 @@ p5.draw = function () {
 ```
 @P5.eval
 
-### Co je špatně?
+<details>
+
+<summary>Pomoc po vlastním pokusu</summary>
+
+**Nápověda 1.** Porovnej přesně dva znaky mezi `x =+ speed` a zápisem, který má hodnotu `x` zvyšovat.
+
+<details>
+
+<summary>Potřebuji konkrétnější nápovědu</summary>
+
+**Nápověda 2.** Operátor `+=` patří mezi proměnnou a hodnotu. Zápis `=+` je obyčejné přiřazení kladné hodnoty.
+
+<details>
+
+<summary>Zobrazit vysvětlení a opravu</summary>
 
 ```js
 x += speed;
@@ -345,15 +396,13 @@ znamená:
 x = x + speed;
 ```
 
-Ale:
+Naproti tomu `x =+ speed` přiřadí do `x` kladnou hodnotu `speed`. Je syntakticky platný, ale logicky chybný.
 
-```js
-x =+ speed;
-```
+</details>
 
-se interpretuje jako přiřazení kladné hodnoty `speed` do `x`.
+</details>
 
-To je typická chyba, která může být syntakticky platná, ale logicky chybná.
+</details>
 
 ---
 
@@ -364,12 +413,21 @@ To je typická chyba, která může být syntakticky platná, ale logicky chybn�
 >
 > Je-li `speed = 3`, co po příkazu `x =+ speed` platí?
 >
+> <!-- data-hint-button="1" data-solution-button="1" -->
 > [( )] `x` se zvětší o 3
 > [(X)] `x` dostane hodnotu 3
 > [( )] JavaScript vždy vyhodí syntax error
 > [( )] `x` dostane hodnotu -3
+>
+> [[?]] Všimni si pořadí znaků: `=+` není `+=`.
+> [[?]] Pravá strana je kladná hodnota proměnné `speed`; celý výsledek se přiřadí do `x`.
+>
+> ***
+>
+> Při `speed = 3` se nejdřív vyhodnotí `+speed` jako 3 a pak se tato hodnota přiřadí do `x`.
+>
+> ***
 
-@JSQ.end
 ---
 
 ## MISSION — Pohyb ve dvou osách
@@ -387,7 +445,6 @@ To je typická chyba, která může být syntakticky platná, ale logicky chybn�
 >
 > Nepřidávej zatím `if`, pole ani objekty.
 
-@JSQ.end
 Starter:
 
 ```js
@@ -439,12 +496,21 @@ Po dokončení si zodpověz:
 >
 > Jaké budou nové hodnoty?
 >
+> <!-- data-hint-button="1" data-solution-button="1" -->
 > [( )] `x = 96`, `y = 52`
 > [(X)] `x = 104`, `y = 48`
 > [( )] `x = 104`, `y = 52`
 > [( )] `x = 400`, `y = -100`
+>
+> [[?]] Počítej změnu `x` a změnu `y` odděleně.
+> [[?]] Ke kladné rychlosti se přičítá, záporná rychlost hodnotu zmenší.
+>
+> ***
+>
+> `x` se zvýší ze 100 o 4 na 104. `y` se sníží z 50 o 2 na 48.
+>
+> ***
 
-@JSQ.end
 ---
 
 ## SIDE QUEST — Dva objekty, dva různé stavy
@@ -460,7 +526,6 @@ Po dokončení si zodpověz:
 >
 > Cílem je zjistit, proč se nám při větším počtu entit začnou hodit složitější datové struktury.
 
-@JSQ.end
 Možná výchozí sada proměnných:
 
 ```js
@@ -493,7 +558,6 @@ Zbytek navrhni sám.
 >
 > **Záměrně zatím neřeš odraz od okraje.** To je problém pro WORLD 2 — Decisions.
 
-@JSQ.end
 Po dokončení porovnej své řešení se spolužákem:
 
 1. Kolik proměnných jste potřebovali?
@@ -512,7 +576,6 @@ Kruhy dříve nebo později odletí z canvasu. Zatím to neopravuj: příště b
 >
 > Umím vytvořit proměnnou pomocí `let` a změnit její hodnotu.
 
-@JSQ.end
 @JSQ.flag
 > @JSQ.thinkflag
 >
@@ -528,13 +591,11 @@ Kruhy dříve nebo později odletí z canvasu. Zatím to neopravuj: příště b
 > x =+ speed;
 > ```
 
-@JSQ.end
 @JSQ.flag
 > @JSQ.buildflag
 >
 > Dokážu pomocí proměnných a operátorů vytvořit objekt, který se v p5.js pohybuje ve dvou osách.
 
-@JSQ.end
 ---
 
 ## EXIT CHECK
@@ -553,10 +614,20 @@ x += speed;
 
 Jaká je výsledná hodnota `x`?
 
+<!-- data-hint-button="1" data-solution-button="1" -->
 [( )] 7
 [(X)] 11
 [( )] 15
 [( )] -2
+
+[[?]] Nejdřív proveď první dva příkazy, dokud je `speed` stále 4.
+[[?]] Hodnoty `x` jsou postupně 9, 13 a po změně rychlosti 11.
+
+***
+
+Po prvních dvou přičteních je `x = 13`. Poslední příkaz přičte `-2`, takže výsledkem je 11.
+
+***
 
 ---
 
