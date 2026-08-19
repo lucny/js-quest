@@ -9,7 +9,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 3
 
 - Plán: opakování → `for` → index → mřížka → bezpečný `while` → Pattern Machine.
-- Stav: připraveno k tvorbě.
+- Stav: dokončeno; validátor, Exporter, regresní audit a checkpoint commit.
 - Kontroly: validátor, Exporter, regresní search, checkpoint commit.
 
 # WORLD 4
