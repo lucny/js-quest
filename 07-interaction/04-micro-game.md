@@ -18,7 +18,9 @@ const player = { x: 80, y: 150, speed: 4, size: 30 };
 const target = { x: 450, y: 150, size: 25 };
 let score = 0;
 let playing = true;
-p5.setup = function () { p5.createCanvas(600, 300); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
 p5.draw = function () {
   p5.background(245);
   // TODO: Ovládej player a zachovej hranice.

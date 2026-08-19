@@ -61,7 +61,15 @@ if (x > p5.width || x < 0) {
 
 ## LEARN — Logické spojení
 
-`A || B` je `true`, když platí A **nebo** B. Později využijeme také `A && B`: to je `true` jen tehdy, když platí A **i** B. Zápis `!A` znamená „ne A“.
+Když se má stejná reakce stát na levé **nebo** pravé hranici, není nutné psát stejný příkaz dvakrát. Operátor `||` spojí dvě otázky do jedné:
+
+```js
+if (x > p5.width || x < 0) {
+  speed = -speed;
+}
+```
+
+Levá část testuje pravou hranici, pravá část levou. Celý výraz je `true`, když platí alespoň jedna část. Naproti tomu `&&` znamená „a současně“ — hodí se až tehdy, když musí platit více hranic najednou, například u obdélníkové zóny. Zápis `!A` obrátí odpověď otázky A. Typická chyba je zaměnit `||` a `&&`: objekt nemůže být současně napravo od canvasu a nalevo od nuly.
 
 ---
 
@@ -85,7 +93,9 @@ p5.draw = function () {
   x += xSpeed;
   y += ySpeed;
 
-  if (x > p5.width || x < 0) { xSpeed = -xSpeed; }
+  if (x > p5.width || x < 0) {
+    xSpeed = -xSpeed;
+  }
   // TODO: if pro y a p5.height
 };
 ```
@@ -98,7 +108,9 @@ Pro osu y použij stejné uspořádání: horní hranice je 0, dolní je `p5.hei
 <details><summary>Řešení</summary>
 
 ```js
-if (y > p5.height || y < 0) { ySpeed = -ySpeed; }
+if (y > p5.height || y < 0) {
+  ySpeed = -ySpeed;
+}
 ```
 
 </details></details>
@@ -163,8 +175,12 @@ Pro osu x testuj `p5.width` a 0; pro osu y `p5.height` a 0.
 <details><summary>Řešení</summary>
 
 ```js
-if (x > p5.width || x < 0) { xSpeed = -xSpeed; }
-if (y > p5.height || y < 0) { ySpeed = -ySpeed; }
+if (x > p5.width || x < 0) {
+  xSpeed = -xSpeed;
+}
+if (y > p5.height || y < 0) {
+  ySpeed = -ySpeed;
+}
 ```
 
 </details>

@@ -78,6 +78,14 @@ Nemusíme ještě říkat programu, co má udělat. Nejdřív jen umíme položi
 
 Výraz `x > p5.width` má vždy jednu ze dvou hodnot: `true` nebo `false`. Říkáme mu **booleanový výraz**.
 
+Nevypočítává novou polohu kuličky. Jen porovnává dvě už známé hodnoty a odpovídá na konkrétní otázku. V našem příkladu se nejdřív vezme aktuální `x`, potom šířka canvasu `p5.width` a nakonec znak `>` rozhodne, zda je první hodnota větší.
+
+```js
+const jeZaPravymOkrajem = x > p5.width;
+```
+
+Název proměnné čti jako otázku. Dokud je kulička uvnitř canvasu, uloží se `false`; po přejetí hranice `true`. V příští lekci tuto odpověď použijeme jako podmínku pro reakci programu.
+
 Pro začátek stačí tyto otázky:
 
 - `>` je větší než,
@@ -183,7 +191,9 @@ const jeUprostred = x === 300;
 let x = 80;
 let speed = 3;
 
-p5.setup = function () { p5.createCanvas(600, 300); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
 p5.draw = function () {
   p5.background(245);
   p5.circle(x, 150, 40);

@@ -12,10 +12,24 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 ## EXPERIMENT
 ```js
 const ship = { x: 80, y: 150, speed: 3, size: 40 };
-p5.setup = function () { p5.createCanvas(600, 300); };
-p5.draw = function () { p5.background(245); ship.x += ship.speed; p5.circle(ship.x, ship.y, ship.size); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
+p5.draw = function () {
+  p5.background(245);
+  ship.x += ship.speed;
+  p5.circle(ship.x, ship.y, ship.size);
+};
 ```
 @P5.eval
+## LEARN — Property je část stavu entity
+Objekt není neměnná kartička s údaji. Jednotlivé properties můžeme číst i měnit, takže objekt drží aktuální stav jedné entity.
+
+```js
+ship.x += ship.speed;
+```
+
+Pravá strana nejdřív přečte současné `ship.x` a `ship.speed`. Výsledek se pak uloží zpět do property `ship.x`. Zápis `ship.x + ship.speed` by hodnotu jen spočítal a zahodil. Tečka proto patří na obou stranách: čteme i měníme údaje stejné lodi.
 ## BUG HUNT
 @JSQ.bug
 > **🐞 BUG HUNT** @JSQ.xp(2)
@@ -30,7 +44,9 @@ ship.x + ship.speed;
 > Rozšiř objekt o rychlost a změň jeho polohu v každém snímku.
 ```js
 const ship = { x: 80, y: 150, speed: 3, size: 40 };
-p5.setup = function () { p5.createCanvas(600, 300); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
 p5.draw = function () {
   p5.background(245);
   // TODO: Změň property polohy podle property rychlosti.

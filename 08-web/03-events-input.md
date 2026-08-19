@@ -34,7 +34,18 @@ button.addEventListener('click', function () {
 ```
 @WebDev.HTML_JS
 
+## LEARN — Událost odloží práci na později
+
 `addEventListener('click', ...)` uloží funkci pro budoucí kliknutí. Funkce neběží při načtení; běží až při události.
+
+```js
+button.addEventListener('click', function () {
+  signals = signals + 1;
+  count.textContent = `Signály: ${signals}`;
+});
+```
+
+První argument `'click'` říká, na jakou událost čekáme. Druhý argument je funkce, kterou má prohlížeč zavolat později. Uvnitř funkce nejdřív změníme stav v proměnné `signals`, potom zobrazíme nový stav v DOM. Závorky za názvem funkce by ji spustily hned; pro listener předáváme funkci samotnou.
 
 ## EXPERIMENT
 @JSQ.experiment

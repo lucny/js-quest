@@ -18,23 +18,41 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 [( )] undefined
 [( )] 36
 ```js
-function double(number) { return number * 2; }
+function double(number) {
+  return number * 2;
+}
 ```
 ## LEARN
-`return` předá výsledek zpět tam, kde byla funkce zavolána. Proměnná vytvořená uvnitř funkce je dostupná jen uvnitř jejího těla.
+Některé funkce nekreslí ani nemění stav — spočítají hodnotu, kterou chceme použít jinde. `return` předá takový výsledek zpět na místo volání.
+
+```js
+function double(number) {
+  const result = number * 2;
+  return result;
+}
+
+const size = double(6);
+```
+
+Nejprve parametr `number` dostane 6, funkce vytvoří `result` s hodnotou 12 a `return` tuto hodnotu vrátí. Teprve potom se 12 uloží do `size`. Proměnná `result` patří jen do těla funkce; mimo něj ji JavaScript nezná. Proto venku nepíšeme `result`, ale použijeme návratovou hodnotu.
 ## COMPLETE CODE
 @JSQ.complete
 > **🔧 COMPLETE CODE** @JSQ.xp(2)
 > Vrať z funkce velikost o polovinu větší.
 ```js
-function bigger(size) { // TODO: vrať vypočtenou hodnotu. }
+function bigger(size) {
+  // TODO: Vrať vypočtenou hodnotu.
+}
 ```
 ## BUG HUNT
 @JSQ.bug
 > **🐞 BUG HUNT** @JSQ.xp(2)
 > Proč nelze po volání použít proměnnou `result`?
 ```js
-function sum(a, b) { const result = a + b; return result; }
+function sum(a, b) {
+  const result = a + b;
+  return result;
+}
 console.log(result);
 ```
 <details><summary>Řešení</summary>`result` je lokální. Ulož návratovou hodnotu: `const total = sum(2, 3)`.</details>
@@ -46,8 +64,15 @@ console.log(result);
 function sizeFromEnergy(energy) {
   // TODO: Vypočti a vrať velikost mezi 20 a 100.
 }
-p5.setup = function () { p5.createCanvas(600, 300); };
-p5.draw = function () { p5.background(245); const size = sizeFromEnergy(6); p5.circle(300, 150, 40); /* TODO: Použij size. */ };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
+p5.draw = function () {
+  p5.background(245);
+  const size = sizeFromEnergy(6);
+  // TODO: Použij size jako třetí parametr kruhu.
+  p5.circle(300, 150, 40);
+};
 ```
 @P5.eval
 <details><summary>Pomoc po vlastním pokusu</summary>Vrať výraz, který energii násobí; návratovou hodnotu použij jako třetí parametr kruhu.</details>

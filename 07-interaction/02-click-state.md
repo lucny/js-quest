@@ -12,13 +12,33 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 ## EXPERIMENT
 ```js
 let active = false;
-p5.setup = function () { p5.createCanvas(600, 300); };
-p5.mousePressed = function () { active = !active; };
-p5.draw = function () { p5.background(245); if (active) { p5.fill(40, 180, 80); } else { p5.fill(90); } p5.circle(300, 150, 90); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
+p5.mousePressed = function () {
+  active = !active;
+};
+p5.draw = function () {
+  p5.background(245);
+  if (active) {
+    p5.fill(40, 180, 80);
+  } else {
+    p5.fill(90);
+  }
+  p5.circle(300, 150, 90);
+};
 ```
 @P5.eval
 ## LEARN
-Událost `mousePressed` se spustí při kliknutí. Proměnná `active` uchovává stav mezi událostmi.
+Událost `mousePressed` se spustí jednou při kliknutí. Proměnná `active` uchovává výsledek této události i mezi snímky, takže `draw()` ví, jak má scénu kreslit.
+
+```js
+p5.mousePressed = function () {
+  active = !active;
+};
+```
+
+Vykřičník `!` obrátí boolean: z `false` udělá `true` a naopak. `draw()` potom při každém snímku čte aktuální stav přes `if`. Událost tedy mění data a kreslicí část programu jen ukazuje jejich důsledek. Častá chyba `active = active` stav vůbec nezmění.
 ## BUG HUNT
 @JSQ.bug
 > **🐞 BUG HUNT** @JSQ.xp(2)
@@ -33,9 +53,18 @@ p5.mousePressed = function () { active = active; };
 > Kliknutím přepínej dvě barvy a zobraz aktuální stav jako text.
 ```js
 let active = false;
-p5.setup = function () { p5.createCanvas(600, 300); };
-p5.mousePressed = function () { /* TODO: změň stav. */ };
-p5.draw = function () { p5.background(245); p5.fill(90); p5.circle(300, 150, 90); // TODO: Reaguj na stav při kreslení. };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
+p5.mousePressed = function () {
+  // TODO: Změň stav.
+};
+p5.draw = function () {
+  p5.background(245);
+  p5.fill(90);
+  p5.circle(300, 150, 90);
+  // TODO: Reaguj na stav při kreslení.
+};
 ```
 @P5.eval
 <details><summary>Pomoc po vlastním pokusu</summary>Boolean lze obrátit vykřičníkem.</details>

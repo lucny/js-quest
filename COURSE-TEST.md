@@ -2,6 +2,7 @@
 
 ## Technika
 
+- [ ] Každý řádek v COURSE-MAP má funkční odkaz Zdroj i LiaScript Preview pro aktuální větev.
 - [ ] Všechny lekce z COURSE-MAP otevřou správný soubor a importy se načtou.
 - [ ] Každý editor přijme úpravu; Run a Stop fungují.
 - [ ] P5 canvasy se vykreslují včetně vstupu myši a klávesnice.
@@ -16,6 +17,7 @@
 - [ ] Single-choice kvízy mají jediný očekávaný blok Check.
 - [ ] Details jsou při načtení zavřené a vysvětlení nejsou viditelná před pokusem.
 - [ ] Navigační font obsahuje českou diakritiku bez glyph fallbacku.
+- [ ] Žádná aktivita nezobrazuje doslovný komentář `<!-- class="jsq-card …" -->`.
 
 ## Didaktika
 
@@ -24,3 +26,4 @@
 - [ ] Mission mají runnable scaffold a problémově formulovaná TODO.
 - [ ] Bonus je dobrovolný, Boss syntetizuje již známé koncepty a Flags říkají konkrétní kompetenci.
 - [ ] Arena aktivity podporují porovnávání vysvětlení, ne závod v rychlosti.
+- [ ] Klíčové LEARN bloky vysvětlují problém, syntaxi, mentální model a typickou chybu čitelným kódem.

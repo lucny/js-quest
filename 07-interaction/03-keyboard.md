@@ -12,10 +12,31 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 ## EXPERIMENT
 ```js
 let x = 300;
-p5.setup = function () { p5.createCanvas(600, 300); };
-p5.draw = function () { p5.background(245); if (p5.keyIsDown(p5.LEFT_ARROW)) { x -= 4; } if (p5.keyIsDown(p5.RIGHT_ARROW)) { x += 4; } p5.circle(x, 150, 40); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
+p5.draw = function () {
+  p5.background(245);
+  if (p5.keyIsDown(p5.LEFT_ARROW)) {
+    x -= 4;
+  }
+  if (p5.keyIsDown(p5.RIGHT_ARROW)) {
+    x += 4;
+  }
+  p5.circle(x, 150, 40);
+};
 ```
 @P5.eval
+## LEARN — Klávesa jako průběžný vstup
+`p5.keyIsDown(...)` odpovídá na otázku, zda je konkrétní klávesa právě stisknutá. Proto se ptáme uvnitř `draw()`: při držení klávesy se odpověď kontroluje v každém snímku a hráč se pohybuje plynule.
+
+```js
+if (p5.keyIsDown(p5.LEFT_ARROW)) {
+  x -= 4;
+}
+```
+
+Podmínka chrání změnu `x`. Když levá šipka není stisknutá, poloha se v tomto snímku nezmění. Pro druhý směr použijeme samostatnou otázku, protože hráč může případně držet více kláves. Předchozí `if` a objektový stav se tu přirozeně spojují s novým vstupem z klávesnice.
 ## QUICK QUIZ
 @JSQ.quiz
 > **⚡ QUICK QUIZ** @JSQ.xp(1)

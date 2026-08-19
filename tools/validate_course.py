@@ -30,6 +30,7 @@ REQUIRED_FILES = (
     "ANSWER-GUIDE.md",
     "COURSE-TEST.md",
     "COURSE-REPORT.md",
+    "COURSE-POLISH-REPORT.md",
     "tools/course_metrics.py",
     "WORLD3-TEST.md",
     "WORLD3-REPORT.md",
@@ -48,9 +49,14 @@ REQUIRED_FILES = (
 )
 LESSON = ROOT / "01-variables" / "01-moving-ball.md"
 MACROS = ROOT / "GAME-MACROS.md"
+COURSE_MAP = ROOT / "COURSE-MAP.md"
 STUDENT_LESSONS = tuple(sorted(ROOT.glob("[0-9][0-9]-*/*.md")))
 TASK_LIST = re.compile(r"(?m)^[-*+] \[[ xX]\]")
 MULTIPLE_CHOICE_OPTION = re.compile(r"(?m)^\s*\[\[[Xx ]\]\]")
+ATTRIBUTE_COMMENT = re.compile(r'<!--\s*class="jsq-card\s+[^"\n]+"\s*-->')
+CARD_MACRO_INVOCATION = re.compile(
+    r"^@JSQ\.(?:predict|experiment|complete|bug|mission|bonus|quiz|boss|flag)\s*$"
+)
 SINGLE_CHOICE_THEN_MULTIPLE = re.compile(
     r"(?m)^\s*(?:[-*+]\s+)?\[\([ Xx]\)\][^\n]*"
     r"(?:\n\s*(?:[-*+]\s+)?\[\([ Xx]\)\][^\n]*)*"
@@ -90,6 +96,11 @@ CARD_MACROS = {
 def fail(message: str) -> None:
     print(f"ERROR: {message}")
     ERRORS.append(message)
+
+
+def warn(message: str) -> None:
+    print(f"WARNING: {message}")
+    WARNINGS.append(message)
 
 
 def read(path: Path) -> str:
@@ -307,6 +318,44 @@ def validate_mission_scaffold(path: Path, text: str) -> None:
             fail(f"{path.relative_to(ROOT)}: Mission scaffold neobsahuje TODO.")
 
 
+def validate_card_placement(path: Path, text: str) -> None:
+    """Attribute comments and their card macros must stay isolated and adjacent."""
+    lines = text.splitlines()
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if ATTRIBUTE_COMMENT.search(line):
+            if not ATTRIBUTE_COMMENT.fullmatch(stripped):
+                fail(f"{path.relative_to(ROOT)}:{index + 1}: jsq-card attribute comment je vložený do běžného textu.")
+            elif index + 1 >= len(lines) or not lines[index + 1].startswith(">"):
+                fail(f"{path.relative_to(ROOT)}:{index + 1}: jsq-card attribute comment nemá bezprostřední blockquote.")
+        if CARD_MACRO_INVOCATION.fullmatch(stripped):
+            if index + 1 >= len(lines) or not lines[index + 1].startswith(">"):
+                fail(f"{path.relative_to(ROOT)}:{index + 1}: @JSQ karta nemá bezprostřední blockquote.")
+
+
+def validate_editorial_heuristics(path: Path, text: str) -> None:
+    """Non-blocking signals for prose/code that needs an author review."""
+    sections = re.split(r"(?m)^##\s+", text)
+    for section in sections[1:]:
+        heading, _, content = section.partition("\n")
+        if not heading.upper().startswith("LEARN"):
+            continue
+        prose = re.sub(r"```[\s\S]*?```", "", content)
+        if len(re.sub(r"\s+", "", prose)) < 180:
+            warn(f"{path.relative_to(ROOT)}: LEARN '{heading}' je příliš krátký pro nový koncept.")
+
+    in_fence = False
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if re.match(r"^```", line):
+            in_fence = not in_fence
+            continue
+        if in_fence and len(line) > 100 and re.search(r"\b(?:for|while|if|function)\b", line):
+            warn(f"{path.relative_to(ROOT)}:{line_number}: dlouhá jednorázová konstrukce v code fence vyžaduje redakční kontrolu.")
+        for span in re.finditer(r"`([^`\r\n]*)`", line):
+            if len(span.group(1)) > 80:
+                warn(f"{path.relative_to(ROOT)}:{line_number}: příliš dlouhý inline code span vyžaduje samostatný blok.")
+
+
 def validate_curriculum_shape() -> None:
     expected_worlds = {f"{number:02d}" for number in range(1, 10)}
     found_worlds = {path.parent.name.split("-", maxsplit=1)[0] for path in STUDENT_LESSONS}
@@ -314,7 +363,19 @@ def validate_curriculum_shape() -> None:
         fail("Studentské lekce musí pokrývat právě WORLD 1 až WORLD 9.")
 
 
+def validate_course_map() -> None:
+    text = read(COURSE_MAP)
+    branch = "experimental/course-polish"
+    for path in STUDENT_LESSONS:
+        relative = path.relative_to(ROOT).as_posix()
+        source = f"https://github.com/lucny/js-quest/blob/{branch}/{relative}"
+        preview = f"https://liascript.github.io/course/?https://raw.githubusercontent.com/lucny/js-quest/{branch}/{relative}"
+        if source not in text or preview not in text:
+            fail(f"COURSE-MAP.md postrádá zdroj nebo LiaScript Preview pro {relative}.")
+
+
 ERRORS: list[str] = []
+WARNINGS: list[str] = []
 
 
 def run() -> int:
@@ -342,7 +403,10 @@ def run() -> int:
         validate_student_regressions(path, student_text)
         validate_multiple_choice_quizzes(path, student_text)
         validate_mission_scaffold(path, student_text)
+        validate_card_placement(path, student_text)
+        validate_editorial_heuristics(path, student_text)
     validate_curriculum_shape()
+    validate_course_map()
     validate_world_two()
 
     for path in markdown_files:
@@ -351,6 +415,10 @@ def run() -> int:
     if ERRORS:
         print(f"\nValidation failed: {len(ERRORS)} error(s).")
         return 1
+
+    if WARNINGS:
+        print(f"\nValidation passed with {len(WARNINGS)} editorial warning(s).")
+        return 0
 
     print(f"Validation passed: {len(markdown_files)} Markdown file(s) checked.")
     return 0

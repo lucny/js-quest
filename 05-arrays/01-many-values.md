@@ -24,7 +24,14 @@ console.log(temperatures[0]);
 [(X)] 12
 [( )] 2
 ## LEARN
-Pole drží hodnoty v pořadí. První index je 0, ne 1.
+Pole řeší situaci, kdy spolu souvisí více hodnot stejného druhu. Místo proměnných `temperature1`, `temperature2` a dalších uložíme hodnoty do jednoho uspořádaného celku.
+
+```js
+const temperatures = [18, 21, 23, 20];
+const firstTemperature = temperatures[0];
+```
+
+Hranaté závorky vpravo od názvu pole vybírají jednu pozici. Index 0 znamená první položku, index 1 druhou. Program proto nečte „nultou teplotu“, ale první uloženou hodnotu. Když zkusíš index mimo pole, žádná hodnota na něm není — později se naučíme bezpečnou hranici `length`.
 ## EXPERIMENT
 Změň jednu hodnotu v poli a přečti ji jiným indexem. Co se stane při indexu mimo pole?
 ## MISSION

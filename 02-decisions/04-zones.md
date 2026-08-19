@@ -66,6 +66,10 @@ if (x < p5.width / 2) {
 
 `else` není druhé nezávislé `if`. Je to druhá větev stejného rozhodnutí: když podmínka neplatí, vykoná se `else`.
 
+Program tedy nejdřív jednou vyhodnotí otázku `x < p5.width / 2`. Je-li odpověď `true`, provede se první blok. Je-li `false`, první blok se přeskočí a provede se blok po `else`. Nikdy se při jednom rozhodnutí neprovedou obě větve.
+
+To je užitečné pro volbu jedné z možností: modrá **nebo** oranžová, aktivní zóna **nebo** běžný stav. Pokud bys napsal dva samostatné bloky `if`, musel bys sám hlídat, zda se jejich pravidla nepřekrývají.
+
 ---
 
 ## EXPERIMENT — Najdi střed
@@ -159,8 +163,12 @@ p5.draw = function () {
   p5.background(245);
   x += xSpeed;
   y += ySpeed;
-  if (x > p5.width || x < 0) { xSpeed = -xSpeed; }
-  if (y > p5.height || y < 0) { ySpeed = -ySpeed; }
+  if (x > p5.width || x < 0) {
+    xSpeed = -xSpeed;
+  }
+  if (y > p5.height || y < 0) {
+    ySpeed = -ySpeed;
+  }
 
   p5.fill(70);
   // TODO: Rozhodni, zda je kulička uvnitř středové obdélníkové oblasti.
@@ -246,10 +254,18 @@ p5.draw = function () {
   p5.background(245);
   x += xSpeed;
   y += ySpeed;
-  if (x > p5.width || x < 0) { xSpeed = -xSpeed; }
-  if (y > p5.height || y < 0) { ySpeed = -ySpeed; }
+  if (x > p5.width || x < 0) {
+    xSpeed = -xSpeed;
+  }
+  if (y > p5.height || y < 0) {
+    ySpeed = -ySpeed;
+  }
   const zone = x > 220 && x < 380 && y > 90 && y < 210;
-  if (zone) { p5.fill(40, 180, 80); } else { p5.fill(70); }
+  if (zone) {
+    p5.fill(40, 180, 80);
+  } else {
+    p5.fill(70);
+  }
   p5.circle(x, y, 40);
 };
 ```

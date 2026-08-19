@@ -23,7 +23,19 @@ const player = { x: 100, y: 150, speed: 3, size: 40, color: 'blue' };
 [( )] `player[x]`
 [( )] `x.player()`
 ## LEARN
-Object literal spojuje pojmenované **properties**. Tečka vybírá jednu vlastnost.
+Objekt řeší problém dlouhého seznamu proměnných, které popisují jednu entitu. Object literal vytvoří celek v kudrnatých závorkách; každá property má jméno, dvojtečku a vlastní hodnotu.
+
+```js
+const player = {
+  x: 100,
+  y: 150,
+  size: 40
+};
+
+const horizontalPosition = player.x;
+```
+
+Tečka čte jednu property z konkrétního objektu. `player.x` tedy znamená „vodorovná poloha tohoto hráče“, ne obecná proměnná `x`. Properties oddělujeme čárkami. Typická chyba je obrátit pořadí na `x.player` nebo zapomenout, že tečka patří za název objektu.
 ## MISSION
 @JSQ.mission
 > **🎯 MISSION: KARTA HRÁČE** @JSQ.xp(4)

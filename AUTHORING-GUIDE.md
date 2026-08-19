@@ -77,19 +77,20 @@ Krátká lekce může některé sekce sloučit. Pořadí „aktivita před vysv�
 
 ---
 
-## 4. Jak psát vysvětlení
+## 4. LEARN BLOCK STANDARD
 
-Výkladové bloky mají být krátké.
+LEARN blok nevkládejte před první pokus, ale po problému, předpovědi nebo experimentu, který dal konstrukci důvod existovat. Při zavádění významného konceptu má LEARN zpravidla obsahovat:
 
-Preferovaný vzorec:
+1. problém, který konstrukce řeší;
+2. krátký, víceřádkový příklad;
+3. rozklad významu syntaxe nebo jednotlivých řádků;
+4. krokový mentální model běhu programu;
+5. typickou chybu či nedorozumění;
+6. vazbu na předchozí znalost a další aktivitu.
 
-1. Co jsme pozorovali?
-2. Jaký princip to vysvětluje?
-3. Jaká je obecná syntaxe?
-4. Jaká typická chyba nastává?
-5. Kde princip použijeme dál?
+Nejde o povinnost psát dlouhé odstavce. Jedna přesná věta může stačit pro opakování; první výklad `for`, `while`, `if`, funkce, parametrů, `return`, pole, indexu, objektu, metody, selectoru nebo event listeneru však musí studentovi vysvětlit nejen název, ale i důvod a chování zápisu.
 
-Nevkládejte několik obrazovek teorie před první interakci.
+Používejte podle potřeby čtyři lehké varianty: **concept** (proč konstrukce existuje), **syntax** (jak číst její části), **mental model** (co se děje krok po kroku) a **pitfall** (jak rozpoznat běžnou chybu). Didakticky významnou konstrukci nikdy neschovávejte do dlouhého jednořádkového příkladu.
 
 ---
 
@@ -395,7 +396,9 @@ NN-world-name/
 
 Před dokončením lekce:
 
-Před commitem si ověř: aktivita před výkladem, skutečná předpověď, editovatelný a runnable scaffold, izolovaný nový koncept, realistický Bug Hunt, dobrovolný Bonus, Boss bez nové syntaxe, kompetenční Flag a skrytou pomoc. Potom spusť `python tools/validate_course.py`, oficiální LiaScript Exporter pro upravenou lekci, regresní `rg` search a `git diff --check`.
+Před commitem si ověř: aktivita před výkladem, skutečná předpověď, LEARN podle uvedeného standardu, editovatelný a runnable scaffold, izolovaný nový koncept, realistický Bug Hunt, dobrovolný Bonus, Boss bez nové syntaxe, kompetenční Flag a skrytou pomoc. Karty používej jen jako samostatný řádek `@JSQ.*` bezprostředně před blockquotem; attribute comment nikdy nevkládej do odstavce.
+
+Potom spusť `python tools/validate_course.py`, oficiální LiaScript Exporter pro upravenou lekci, regresní `rg` search a `git diff --check`. Varování validátoru pro krátký LEARN nebo dlouhou jednořádkovou konstrukci vyřeš, nebo v revizi zdůvodni, proč je ukázka výjimkou.
 
 ---
 

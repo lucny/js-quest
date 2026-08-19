@@ -269,6 +269,8 @@ x += 2;
 
 Oba příkazy v tomto případě znamenají totéž.
 
+Zkrácený zápis je užitečný hlavně proto, že ukazuje záměr: „vezmi současnou hodnotu a přidej k ní 2“. Neznamená „nastav x na 2“. Stejně lze zkrátit odečítání pomocí `-=`. Při pohybu tak každý průchod `draw()` vezme poslední polohu a vytvoří z ní novou.
+
 Ještě užitečnější je oddělit **polohu** od **rychlosti**:
 
 ```js
@@ -283,6 +285,8 @@ x += speed;
 ```
 
 Tím získáme dvě samostatně měnitelné části stavu.
+
+`x` odpovídá na otázku „kde kulička právě je“, zatímco `speed` říká „o kolik se má posunout v jednom snímku“. Když změníme jen `speed`, nemusíme přepisovat pravidlo pohybu. Toto oddělení stavu a pravidla později využijeme pro odrazy i ovládání.
 
 ---
 

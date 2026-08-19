@@ -27,7 +27,16 @@ document.querySelector('#dom-message-1').textContent = 'JavaScript prvek našel.
 ```
 @WebDev.HTML_JS
 
+## LEARN — DOM a první selector
+
 DOM je strom prvků stránky. JavaScript nezačíná novou stránku tvořit; může pracovat s prvky, které HTML už vytvořilo.
+
+```js
+const message = document.querySelector('#dom-message-1');
+message.textContent = 'JavaScript prvek našel.';
+```
+
+`document` znamená právě zobrazenou stránku. `querySelector(...)` v ní hledá prvek podle pravidla v závorkách. Znak `#` říká, že hledáme hodnotu atributu `id`, takže selector `#dom-message-1` patří k `id="dom-message-1"` v HTML. Nalezený prvek uložíme do proměnné a pak měníme jeho `textContent`. Když se id a selector liší, JavaScript správný prvek nenajde.
 
 ## EXPERIMENT
 @JSQ.experiment

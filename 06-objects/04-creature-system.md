@@ -19,7 +19,9 @@ const creatures = [
   { x: 240, y: 170, speed: -2, size: 45 },
   { x: 440, y: 130, speed: 3, size: 25 }
 ];
-p5.setup = function () { p5.createCanvas(600, 300); };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
 p5.draw = function () {
   p5.background(245);
   // TODO: Projdi creatures a aktualizuj každou entitu.

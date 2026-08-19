@@ -17,6 +17,16 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 [(X)] 3
 [( )] 9
 [( )] undefined
+## LEARN — Počet a poslední pozice
+`length` říká, kolik položek pole obsahuje. Neříká ale číslo poslední pozice, protože indexy začínají nulou.
+
+```js
+const scores = [10, 12, 18];
+const count = scores.length;
+const lastIndex = scores.length - 1;
+```
+
+Zde je `count` 3, ale poslední platný index je 2. Zápis `scores[1] = 25` změní druhou položku: nejdřív vybereme pozici v hranatých závorkách, potom do ní přiřadíme novou hodnotu. Zaměnění `length` za poslední index je častá chyba off-by-one.
 ## COMPLETE CODE
 @JSQ.complete
 > **🔧 COMPLETE CODE** @JSQ.xp(2)

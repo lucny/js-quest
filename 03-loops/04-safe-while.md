@@ -21,7 +21,18 @@ while (i < 5) {
 ```
 <details><summary>Řešení</summary>V těle chybí změna `i += 1`.</details>
 ## LEARN
-`while` opakuje tělo, dokud je jeho otázka `true`. Proto musí existovat cesta, jak ji změnit na `false`.
+`while` používáme, když je důležitá otázka pokračování: „Dokud tohle platí, opakuj krok.“ Na rozdíl od `for` není změna počítadla napsaná v hlavičce, proto ji musíme zkontrolovat zvlášť.
+
+```js
+let value = 5;
+
+while (value > 0) {
+  console.log(value);
+  value -= 1;
+}
+```
+
+Nejprve se otestuje `value > 0`. Pokud platí, tělo vypíše hodnotu a sníží ji o 1. Při hodnotě 0 je otázka `false` a cyklus skončí. Když změna `value -= 1` chybí, odpověď se nikdy nezmění — vznikne nekonečný cyklus.
 ## MISSION
 @JSQ.mission
 > **🎯 MISSION: BEZPEČNÝ ODPOČET** @JSQ.xp(3)

@@ -12,12 +12,28 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 ## EXPERIMENT
 ```js
 const heights = [40, 90, 60, 130, 75];
-p5.setup = function () { p5.createCanvas(600, 300); };
-p5.draw = function () { p5.background(245); for (let i = 0; i < heights.length; i += 1) { p5.rect(40 + i * 100, 260 - heights[i], 60, heights[i]); } };
+p5.setup = function () {
+  p5.createCanvas(600, 300);
+};
+p5.draw = function () {
+  p5.background(245);
+  for (let i = 0; i < heights.length; i += 1) {
+    p5.rect(40 + i * 100, 260 - heights[i], 60, heights[i]);
+  }
+};
 ```
 @P5.eval
 ## LEARN
-Cyklus nepotřebuje pevné číslo; `array.length` se přizpůsobí datům. Index `i` zároveň vybírá prvek.
+Cyklus přes pole propojuje dvě známé myšlenky: `i` určuje pořadí průchodu a zároveň vybírá hodnotu na stejné pozici v poli.
+
+```js
+for (let i = 0; i < heights.length; i += 1) {
+  const height = heights[i];
+  p5.rect(40 + i * 100, 260 - height, 60, height);
+}
+```
+
+Hranice `i < heights.length` se přizpůsobí počtu dat, takže nečteme neexistující položku. V prvním průchodu je `i` 0 a `height` je 40, v dalším je `i` 1 a vybere se 90. Kdybychom napsali `i <= heights.length`, poslední průchod by hledal položku za koncem pole.
 ## QUICK QUIZ
 @JSQ.quiz
 > **⚡ QUICK QUIZ** @JSQ.xp(1)

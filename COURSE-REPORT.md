@@ -43,7 +43,9 @@ Metriky jsou reprodukovatelné skriptem `python tools/course_metrics.py`. Čist�
 
 # Výsledky validace
 
-`python tools/validate_course.py` prošel po dokončení 67 Markdown souborů. Validátor kontroluje hlavičky, importy, code fences, task-list regresi, zakázaný multiple-choice/hint zápis a Mission scaffold.
+`python tools/validate_course.py` prošel po dokončení 68 Markdown souborů. Validátor kontroluje hlavičky, importy, code fences, task-list regresi, zakázaný multiple-choice/hint zápis a Mission scaffold.
+
+Polishing navíc kontroluje bezpečné umístění `@JSQ` karet a raw `jsq-card` attribute comments. Nezávazná editorial heuristika upozorňuje na příliš krátký `LEARN` blok a dlouhou jednorázovou konstrukci uvnitř code fence.
 
 # Výsledky LiaScript Exporteru
 

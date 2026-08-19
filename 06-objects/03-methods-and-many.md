@@ -10,10 +10,18 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 # WORLD 6 — Co entita umí
 @JSQ.world(6, Objects)
 ## LEARN
-Funkce uložená v objektu je metoda. Může měnit vlastní properties přes `this`.
+Funkce uložená v objektu se nazývá metoda. Patří ke stejné entitě jako její data, takže může používat její vlastní properties přes `this`.
 ```js
-const bot = { x: 50, speed: 2, move() { this.x += this.speed; } };
+const bot = {
+  x: 50,
+  speed: 2,
+  move() {
+    this.x += this.speed;
+  }
+};
 ```
+
+Když zavoláme `bot.move()`, slovo `this` uvnitř metody znamená právě objekt `bot`. Metoda proto zvýší jeho x o jeho rychlost. Kdybychom zapsali jen `x`, JavaScript by hledal jinou proměnnou mimo objekt. Později může stejná metoda fungovat pro více objektů, protože každý z nich pracuje se svými údaji.
 ## PREDICT
 @JSQ.predict
 > **❓ PREDICT** @JSQ.xp(1)
@@ -27,7 +35,9 @@ const bot = { x: 50, speed: 2, move() { this.x += this.speed; } };
 > **🔧 COMPLETE CODE** @JSQ.xp(2)
 > Doplň volání metody v cyklu.
 ```js
-for (let i = 0; i < bots.length; i += 1) { // TODO: nech aktuálního bota vykonat move. }
+for (let i = 0; i < bots.length; i += 1) {
+  // TODO: Nech aktuálního bota vykonat move.
+}
 ```
 ## MISSION
 @JSQ.mission

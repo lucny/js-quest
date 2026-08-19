@@ -27,6 +27,16 @@ Vyber jednu cestu, nebo navrhni vlastní variantu podobného rozsahu.
 - **C — datová miniaplikace:** pole nebo objekty drží data, program je zobrazí a změní.
 - **D — DOM webová aplikace:** input, tlačítko a událost mění stav stránky.
 
+## LEARN — Nejdřív problém, potom funkce
+
+Projekt nezačíná seznamem technologií, ale malou zkušeností uživatele. Dobré MVP umí popsat jednu hlavní akci a jeden viditelný důsledek.
+
+```text
+uživatel udělá akci → program změní stav → uživatel vidí výsledek
+```
+
+Například ve hře uživatel stiskne šipku, program změní polohu hráče a canvas ukáže pohyb. Ve webové aplikaci uživatel odešle text, pole nebo DOM se změní a stránka ukáže novou zprávu. Tento řetězec je menší a ověřitelnější než plán „udělám celou hru“. Až funguje, můžeš přidat další pravidlo nebo vzhled.
+
 ## QUICK QUIZ
 @JSQ.quiz
 > Která otázka pomůže vybrat realistické MVP?

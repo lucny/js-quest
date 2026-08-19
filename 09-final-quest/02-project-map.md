@@ -38,6 +38,21 @@ p5.setup = function () {
 ```
 @P5.eval
 
+## LEARN — Mapa odděluje rozhodnutí od kódu
+
+Než začneš psát funkce, pojmenuj pět částí projektu: vstup, stav, pravidlo, výstup a funkci. Každá odpovídá na jinou otázku.
+
+```js
+const plan = {
+  input: 'šipky',
+  state: 'pozice hráče',
+  rule: 'sběr cíle přidá bod',
+  output: 'skóre na obrazovce'
+};
+```
+
+Vstup říká, co udělá člověk. Stav je hodnota, kterou si program pamatuje. Pravidlo rozhoduje, kdy se stav změní, a výstup ukáže důsledek. Taková mapa ještě není hotový program; chrání ale před tím, abys začal náhodně kreslit dřív, než víš, jaké údaje a pravidla potřebuješ.
+
 ## BUG HUNT
 @JSQ.bug
 > Proč se v tomto plánu neukáže pravidlo? Najdi rozdíl mezi názvem property v objektu a při čtení.

@@ -11,7 +11,7 @@ Začni v [COURSE-MAP.md](COURSE-MAP.md) a otevři první lekci WORLD 1. Postupuj
 Kurz používá [LiaScript](https://liascript.github.io/), [p5.js](https://p5js.org/) pro vizualizace a oficiální LiaScript WebDev template pro WORLD 8. Po publikování větve otevři lekci v LiaScript Preview:
 
 ```text
-https://liascript.github.io/course/?https://raw.githubusercontent.com/lucny/js-quest/experimental/course-completion/01-variables/01-moving-ball.md
+https://liascript.github.io/course/?https://raw.githubusercontent.com/lucny/js-quest/experimental/course-polish/01-variables/01-moving-ball.md
 ```
 
 P5 lekce běží v instance mode s prefixem `p5.`. Web/DOM lekce používají `@WebDev.HTML_JS`; jejich HTML a JavaScript se vykreslují společně v oficiálním template.

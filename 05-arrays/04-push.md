@@ -10,7 +10,14 @@ import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 # WORLD 5 — Přidáváme nová data
 @JSQ.world(5, Arrays)
 ## LEARN
-`push` přidá hodnotu na konec pole.
+`push` přidá jednu hodnotu na konec existujícího pole. Hodí se pro historii hodů, zpráv nebo naměřených hodnot, když data přibývají až během programu.
+
+```js
+const rolls = [2, 5];
+rolls.push(4);
+```
+
+Po zavolání obsahuje pole tři hodnoty: `[2, 5, 4]`. Slovo `push` je metoda pole, proto za ním patří závorky s hodnotou, kterou chceme přidat. Samotné `rolls.push` nic neprovede. Když hodnoty přidáváme opakovaně, kontrolujeme také `rolls.length`, aby historie nerostla bez omezení.
 ## BUG HUNT
 @JSQ.bug
 > **🐞 BUG HUNT** @JSQ.xp(2)

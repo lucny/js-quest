@@ -32,7 +32,17 @@ p5.draw = function () {
 ```
 @P5.eval
 ## LEARN
-Vnější cyklus vybírá řadu, vnitřní sloupec. Vnitřní cyklus se dokončí při každé nové řadě.
+Jedna smyčka umí projít řadu. Dvě smyčky vytvoří mřížku, protože vnitřní cyklus dokončí všechny sloupce dřív, než vnější cyklus přejde na další řadu.
+
+```js
+for (let row = 0; row < 4; row += 1) {
+  for (let column = 0; column < 8; column += 1) {
+    p5.circle(45 + column * 70, 45 + row * 70, 24);
+  }
+}
+```
+
+`row` určuje svislou polohu a `column` vodorovnou. Pro `row = 0` proběhnou všechny sloupce 0 až 7; potom se `row` změní na 1 a stejná řada sloupců začíná znovu. Typická chyba je zaměnit oba indexy — mřížka pak roste jen v jednom směru.
 ## COMPLETE CODE
 @JSQ.complete
 > **🔧 COMPLETE CODE** @JSQ.xp(2)

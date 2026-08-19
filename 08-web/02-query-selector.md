@@ -28,7 +28,17 @@ lamp.style.background = '#fef08a';
 ```
 @WebDev.HTML_JS
 
+## LEARN — Prvek a jeho vlastnosti
+
 Jeden selector najde jeden prvek. Přes proměnnou potom čteme a měníme jeho vlastnosti: například `textContent` nebo `style.background`.
+
+```js
+const lamp = document.querySelector('#selector-lamp-2');
+lamp.textContent = 'Lampa svítí.';
+lamp.style.background = '#fef08a';
+```
+
+První řádek vybere prvek, další dva mění různé části téhož prvku. `textContent` je viditelný text; `style.background` je barva pozadí. Oddělení je užitečné: nejdřív najdeme správný prvek, potom rozhodneme, kterou jeho vlastnost chceme změnit. Kdyby selector neměl `#`, hledal by název HTML tagu místo id.
 
 ## BUG HUNT
 @JSQ.bug
