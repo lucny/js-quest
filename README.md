@@ -1,40 +1,38 @@
 # JS Quest
 
-> Interaktivní výprava do základů JavaScriptu.
+JS Quest je pilotní interaktivní kurz základů JavaScriptu pro začínající středoškolské studenty. Staví na krátkých programátorských problémech: předpověď, experiment, vysvětlení, úprava kódu a samostatné použití principu.
 
-JS Quest je experimentální výukový kurz JavaScriptu postavený na krátkých programátorských úkolech. Student nejprve předpovídá chování programu, potom experimentuje, vysvětluje pozorování, upravuje kód a hledá chyby.
+Technologie: [LiaScript](https://liascript.github.io/) pro interaktivní Markdown, kvízy a editovatelný kód; [p5.js](https://p5js.org/) pro přirozené vizualizace programového stavu. XP a vlajky jsou v pilotu pouze didaktická metadata, ne známky ani persistentní skóre.
 
-Kurz používá [LiaScript](https://liascript.github.io/) a tam, kde je to užitečné, [p5.js](https://p5js.org/) pro okamžitou vizualizaci výsledků.
+## Struktura
 
-## Obsah repozitáře
+- [01-variables/01-moving-ball.md](01-variables/01-moving-ball.md) — pilotní lekce WORLD 1: proměnné, přiřazení, rychlost a pohyb.
+- [GAME-DESIGN.md](GAME-DESIGN.md) — didaktický a herní návrh.
+- [GAME-MACROS.md](GAME-MACROS.md) — společná LiaScript makra a vzhled aktivit.
+- [AUTHORING-GUIDE.md](AUTHORING-GUIDE.md) — pravidla pro nové lekce.
+- [AGENTS.md](AGENTS.md) — trvalé pokyny pro automatizovanou práci na projektu.
 
-- `01-variables/01-moving-ball.md` — pilotní lekce WORLD 1 o proměnných, stavu programu a operátorech; výsledkem je pohybující se kulička v p5.js.
-- `GAME-DESIGN.md` — herní a didaktický návrh kurzu.
-- `GAME-MACROS.md` — společná makra a vizuální komponenty pro lekce.
-- `AUTHORING-GUIDE.md` — pravidla a doporučení pro tvorbu dalších lekcí.
+## Otevření pilotu
 
-## Náhled lekce
+Po pushi větve `experimental/pilot` otevři tento odkaz v prohlížeči:
 
-Lekci lze otevřít v [LiaScript Live Editoru](https://liascript.github.io/LiveEditor/):
+```text
+https://liascript.github.io/course/?https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/01-variables/01-moving-ball.md
+```
 
-1. otevři soubor `01-variables/01-moving-ball.md`,
-2. zkopíruj jeho obsah do editoru,
-3. spusť náhled a vyzkoušej interaktivní bloky i p5.js ukázky.
+LiaScript načte p5js template i společná makra přes importy z hlavní hlavičky lekce. Pro rychlé úpravy lze použít také [LiaScript Live Editor](https://liascript.github.io/LiveEditor/).
 
-Pro publikování lekce stačí zpřístupnit Markdown soubor přes veřejnou URL. Import p5.js šablony je uveden přímo v hlavičce lekce.
+## Validace
 
-## Stav projektu
+Vyžaduje Python 3.11+ a nepřidává žádné závislosti:
 
-Projekt je ve fázi pilotu (`v0.1`). XP a vlajky jsou zatím motivační a didaktická metadata; persistentní ukládání výsledků není součástí této verze.
+```powershell
+python tools/validate_course.py
+git diff --check
+```
 
-## Tvorba dalších lekcí
+Validátor kontroluje povinné soubory, UTF-8, code fences, hlavičku a importy pilotu, sadu `@JSQ` maker, párování karet, označení WORLD a lokální odkazy. Nenahrazuje render LiaScriptu ani manuální ověření interakce p5.js.
 
-Při rozšiřování projektu postupuj podle `AUTHORING-GUIDE.md` a používej makra z `GAME-MACROS.md`. Doporučený průběh lekce je:
+## Nová lekce
 
-`ENTRY` → `PREDICT` → `EXPERIMENT` → `LEARN` → `TRAINING` → `BUG HUNT` → `MISSION` → `PROOF OF UNDERSTANDING` → `FLAGS`
-
-Každá lekce by měla obsahovat editovatelný kód, alespoň jeden debuggingový moment a jasné oddělení povinné části od dobrovolného `SIDE QUEST`.
-
-## Licence
-
-Licence projektu zatím nebyla určena.
+Začni v [AUTHORING-GUIDE.md](AUTHORING-GUIDE.md), používej makra z [GAME-MACROS.md](GAME-MACROS.md) a před předáním spusť validaci. Společný CSS/HTML kód nepatří do jednotlivých lekcí.

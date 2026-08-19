@@ -3,26 +3,40 @@
 @JSQ.styles
 <style>
 .jsq-card {
-  border-left: 0.45rem solid #52616b;
-  border-radius: 0.55rem;
-  padding: 0.8rem 1rem;
+  border: 1px solid var(--jsq-accent, currentColor);
+  border-left: 0.45rem solid var(--jsq-accent, currentColor);
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
   margin: 1rem 0 1.25rem 0;
-  background: rgba(127,127,127,0.07);
+  background: transparent;
+  color: inherit;
 }
 
 .jsq-card strong:first-child {
   letter-spacing: 0.02em;
 }
 
-.jsq-predict { border-left-color: #2563eb; }
-.jsq-experiment { border-left-color: #0891b2; }
-.jsq-complete { border-left-color: #ea580c; }
-.jsq-bug { border-left-color: #dc2626; }
-.jsq-mission { border-left-color: #1d4ed8; }
-.jsq-bonus { border-left-color: #7e22ce; }
-.jsq-quiz { border-left-color: #ca8a04; }
-.jsq-boss { border-left-color: #111827; }
-.jsq-flag { border-left-color: #15803d; }
+.jsq-predict { --jsq-accent: #1d4ed8; }
+.jsq-experiment { --jsq-accent: #0e7490; }
+.jsq-complete { --jsq-accent: #c2410c; }
+.jsq-bug { --jsq-accent: #b91c1c; }
+.jsq-mission { --jsq-accent: #1e40af; }
+.jsq-bonus { --jsq-accent: #6b21a8; }
+.jsq-quiz { --jsq-accent: #a16207; }
+.jsq-boss { --jsq-accent: #374151; }
+.jsq-flag { --jsq-accent: #166534; }
+
+@media (prefers-color-scheme: dark) {
+  .jsq-predict { --jsq-accent: #93c5fd; }
+  .jsq-experiment { --jsq-accent: #67e8f9; }
+  .jsq-complete { --jsq-accent: #fdba74; }
+  .jsq-bug { --jsq-accent: #fca5a5; }
+  .jsq-mission { --jsq-accent: #bfdbfe; }
+  .jsq-bonus { --jsq-accent: #d8b4fe; }
+  .jsq-quiz { --jsq-accent: #fde68a; }
+  .jsq-boss { --jsq-accent: #e5e7eb; }
+  .jsq-flag { --jsq-accent: #86efac; }
+}
 
 .jsq-xp,
 .jsq-badge {
@@ -53,7 +67,8 @@
 @JSQ.bonus:      <section class="jsq-card jsq-bonus">
 @JSQ.quiz:       <section class="jsq-card jsq-quiz">
 @JSQ.boss:       <section class="jsq-card jsq-boss">
-@JSQ.flagbox:    <section class="jsq-card jsq-flag">
+@JSQ.flag:       <section class="jsq-card jsq-flag">
+@JSQ.flagbox:    @JSQ.flag
 @JSQ.end:        </section>
 
 @JSQ.xp: <span class="jsq-xp">+@0 XP</span>
@@ -170,7 +185,7 @@ Každá karta je párová: otevře se typovým makrem a uzavře `@JSQ.end`.
 ### Vlajka
 
 ```text
-@JSQ.flagbox
+@JSQ.flag
 > @JSQ.buildflag
 >
 > Dokážu samostatně použít proměnné k řízení pohybu.

@@ -4,60 +4,15 @@ version:    0.1.0
 language:   cs
 comment:    Pilotní lekce WORLD 1: proměnné a stav programu pomocí pohybující se kuličky.
 
+import: https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/GAME-MACROS.md
 import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
-
-@JSQ.styles
-<style>
-.jsq-card {
-  border-left: 0.45rem solid #52616b;
-  border-radius: 0.55rem;
-  padding: 0.8rem 1rem;
-  margin: 1rem 0 1.25rem 0;
-  background: rgba(127,127,127,0.07);
-}
-.jsq-predict { border-left-color: #2563eb; }
-.jsq-experiment { border-left-color: #0891b2; }
-.jsq-complete { border-left-color: #ea580c; }
-.jsq-bug { border-left-color: #dc2626; }
-.jsq-mission { border-left-color: #1d4ed8; }
-.jsq-bonus { border-left-color: #7e22ce; }
-.jsq-quiz { border-left-color: #ca8a04; }
-.jsq-boss { border-left-color: #111827; }
-.jsq-flag { border-left-color: #15803d; }
-.jsq-xp, .jsq-badge {
-  display: inline-block;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 0.08rem 0.48rem;
-  margin-left: 0.35rem;
-  font-size: 0.78em;
-  font-weight: 700;
-  line-height: 1.35;
-  vertical-align: middle;
-}
-</style>
-@end
-
-@JSQ.predict:    <section class="jsq-card jsq-predict">
-@JSQ.experiment: <section class="jsq-card jsq-experiment">
-@JSQ.complete:   <section class="jsq-card jsq-complete">
-@JSQ.bug:        <section class="jsq-card jsq-bug">
-@JSQ.mission:    <section class="jsq-card jsq-mission">
-@JSQ.bonus:      <section class="jsq-card jsq-bonus">
-@JSQ.quiz:       <section class="jsq-card jsq-quiz">
-@JSQ.boss:       <section class="jsq-card jsq-boss">
-@JSQ.flagbox:    <section class="jsq-card jsq-flag">
-@JSQ.end:        </section>
-@JSQ.xp:         <span class="jsq-xp">+@0 XP</span>
-@JSQ.codeflag:   <span class="jsq-badge">🟦 CODE FLAG</span>
-@JSQ.thinkflag:  <span class="jsq-badge">🟨 THINK FLAG</span>
-@JSQ.buildflag:  <span class="jsq-badge">🟥 BUILD FLAG</span>
-@JSQ.worldflag:  <span class="jsq-badge">🏴 WORLD FLAG</span>
 -->
 
 @JSQ.styles
 
 # WORLD 1 — Pohybující se kulička
+
+@JSQ.world(1, Variables)
 
 > **Variables / stav programu / operátory**
 >
@@ -546,17 +501,19 @@ Po dokončení porovnej své řešení se spolužákem:
 3. Kde se začíná objevovat opakování?
 4. Jaký problém podle vás budeme řešit pomocí objektů nebo polí?
 
+Kruhy dříve nebo později odletí z canvasu. Zatím to neopravuj: příště budeme potřebovat rozhodnutí podle podmínky, tedy `if`.
+
 ---
 
 ## FLAGS — Co máš skutečně umět
 
-@JSQ.flagbox
+@JSQ.flag
 > @JSQ.codeflag
 >
 > Umím vytvořit proměnnou pomocí `let` a změnit její hodnotu.
 
 @JSQ.end
-@JSQ.flagbox
+@JSQ.flag
 > @JSQ.thinkflag
 >
 > Dokážu vysvětlit rozdíl mezi:
@@ -572,7 +529,7 @@ Po dokončení porovnej své řešení se spolužákem:
 > ```
 
 @JSQ.end
-@JSQ.flagbox
+@JSQ.flag
 > @JSQ.buildflag
 >
 > Dokážu pomocí proměnných a operátorů vytvořit objekt, který se v p5.js pohybuje ve dvou osách.
@@ -611,6 +568,11 @@ V běžném p5.js často uvidíš:
 function setup() {
   createCanvas(600, 300);
 }
+
+function draw() {
+  background(240);
+  circle(80, 150, 40);
+}
 ```
 
 Oficiální p5js šablona pro LiaScript používá tzv. **instance mode**, a proto v této učebnici zapisujeme:
@@ -618,6 +580,11 @@ Oficiální p5js šablona pro LiaScript používá tzv. **instance mode**, a pro
 ```js
 p5.setup = function () {
   p5.createCanvas(600, 300);
+};
+
+p5.draw = function () {
+  p5.background(240);
+  p5.circle(80, 150, 40);
 };
 ```
 
