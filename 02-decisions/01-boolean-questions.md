@@ -4,7 +4,7 @@ version:    0.1.0
 language:   cs
 comment:    WORLD 2.1: porovnání a booleanové výrazy před podmínkou if.
 
-import: https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/GAME-MACROS.md
+import: https://raw.githubusercontent.com/lucny/js-quest/experimental/world2/GAME-MACROS.md
 import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 -->
 
@@ -179,10 +179,39 @@ const jeUprostred = x === 300;
 >
 > Vytvoř pohybující se kuličku a pod ní zobraz booleanovou hodnotu otázky „je kulička za pravým okrajem?“. Kulička se zatím nemá vracet.
 
+```js
+let x = 80;
+let speed = 3;
+
+p5.setup = function () { p5.createCanvas(600, 300); };
+p5.draw = function () {
+  p5.background(245);
+  p5.circle(x, 150, 40);
+  x += speed;
+
+  // TODO: Vytvoř booleanovou otázku o pravém okraji.
+  // TODO: Zobraz její aktuální hodnotu jako text.
+};
+```
+@P5.eval
+
 <details>
 <summary>Pomoc po vlastním pokusu</summary>
 
-Začni se známým `x += speed` a k textu vlož výraz `x > p5.width`.
+Začni se známým `x += speed` a přidej výraz `x > p5.width` do proměnné.
+
+<details><summary>Konkrétnější nápověda</summary>
+
+Použij `const zaHranou = ...` a potom `p5.text(zaHranou, 20, 35)`.
+
+<details><summary>Jedno možné řešení</summary>
+
+```js
+const zaHranou = x > p5.width;
+p5.text(zaHranou, 20, 35);
+```
+
+</details></details>
 
 </details>
 

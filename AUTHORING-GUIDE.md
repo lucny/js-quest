@@ -265,6 +265,17 @@ Lépe:
 
 > Uprav program tak, aby se kruh pohyboval doprava rychlostí uloženou v samostatné proměnné `speed`.
 
+### Mission scaffolding
+
+Mission vždy obsahuje editor s runnable výchozím kódem. Známé části jsou předpřipravené; student řeší právě nový koncept ve 1–3 významných `TODO`. TODO popisuje problém, nikoli hotovou syntaxi. Pomoc je progresivní a řešení zůstává skryté.
+
+```js
+// TODO: Rozhodni, zda objekt překročil hranici.
+// TODO: Pokud ano, změň jeho chování.
+```
+
+COMPLETE obvykle chybí jeden příkaz či výraz; BONUS nabízí méně scaffoldu a více svobody; BOSS poskytuje pouze minimální technickou kostru a specifikaci.
+
 ---
 
 ## 11. Boss

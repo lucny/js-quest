@@ -4,7 +4,7 @@ version:    0.1.0
 language:   cs
 comment:    WORLD 2.3: odraz od hranic a logické operátory.
 
-import: https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/GAME-MACROS.md
+import: https://raw.githubusercontent.com/lucny/js-quest/experimental/world2/GAME-MACROS.md
 import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 -->
 
@@ -133,6 +133,25 @@ V podmínce o ose y měníme `ySpeed`.
 >
 > Vytvoř objekt s `x`, `y`, `xSpeed` a `ySpeed`, který se pohybuje a odráží od všech čtyř hranic canvasu. Použij alespoň jedno `||`.
 
+```js
+let x = 100;
+let y = 80;
+let xSpeed = 3;
+let ySpeed = 2;
+
+p5.setup = function () { p5.createCanvas(600, 300); };
+p5.draw = function () {
+  p5.background(245);
+  x += xSpeed;
+  y += ySpeed;
+  p5.circle(x, y, 40);
+
+  // TODO: Přidej rozhodování pro obě vodorovné hranice.
+  // TODO: Přidej rozhodování pro obě svislé hranice.
+};
+```
+@P5.eval
+
 <details><summary>Pomoc po vlastním pokusu</summary>
 
 Rozděl problém na vodorovný a svislý odraz. Každý potřebuje vlastní rychlost.
@@ -140,6 +159,15 @@ Rozděl problém na vodorovný a svislý odraz. Každý potřebuje vlastní rych
 <details><summary>Konkrétnější nápověda</summary>
 
 Pro osu x testuj `p5.width` a 0; pro osu y `p5.height` a 0.
+
+<details><summary>Řešení</summary>
+
+```js
+if (x > p5.width || x < 0) { xSpeed = -xSpeed; }
+if (y > p5.height || y < 0) { ySpeed = -ySpeed; }
+```
+
+</details>
 
 </details></details>
 

@@ -115,13 +115,10 @@ def validate_lesson_header(text: str) -> None:
     if "language:   cs" not in header and "language: cs" not in header:
         fail("Pilotní lekce nemá nastavený jazyk cs.")
 
-    expected_imports = (
-        "https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/GAME-MACROS.md",
-        "https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md",
-    )
-    for url in expected_imports:
-        if url not in header:
-            fail(f"V hlavní hlavičce lekce chybí import {url}.")
+    if not re.search(r"https://raw\.githubusercontent\.com/lucny/js-quest/experimental/(pilot|world2)/GAME-MACROS\.md", header):
+        fail("V hlavní hlavičce lekce chybí import sdílených GAME-MACROS.md.")
+    if "https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md" not in header:
+        fail("V hlavní hlavičce lekce chybí import p5js template.")
 
 
 def validate_macros(macro_text: str, lesson_text: str) -> None:
@@ -209,6 +206,10 @@ def validate_world_two() -> None:
             fail(f"{path.relative_to(ROOT)} nemá označení WORLD 2 — Decisions.")
         if "@JSQ.mission" not in text or "@JSQ.flag" not in text:
             fail(f"{path.relative_to(ROOT)} postrádá Mission nebo Flag.")
+        mission = text.find("@JSQ.mission")
+        following = text[mission:mission + 1800]
+        if "```js" not in following or "@P5.eval" not in following:
+            fail(f"{path.relative_to(ROOT)} Mission nemá runnable JS/p5.js scaffold v rozumné blízkosti.")
         if re.search(r"\[\[[?Xx ]\]\]", text):
             fail(f"{path.relative_to(ROOT)} obsahuje zakázanou LiaScript quiz/hint syntax [[...]].")
     boss = ROOT / "02-decisions" / "04-zones.md"

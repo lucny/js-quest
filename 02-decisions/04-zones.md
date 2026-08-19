@@ -4,7 +4,7 @@ version:    0.1.0
 language:   cs
 comment:    WORLD 2.4: větve if/else a prostorové zóny canvasu.
 
-import: https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/GAME-MACROS.md
+import: https://raw.githubusercontent.com/lucny/js-quest/experimental/world2/GAME-MACROS.md
 import: https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md
 -->
 
@@ -148,6 +148,28 @@ if (jeVeZone) {
 >
 > Vytvoř pohybující se kuličku, která se odráží od čtyř hranic. Když vstoupí do obdélníkové oblasti uprostřed, změň jí barvu nebo velikost. Mimo oblast vrať původní vlastnost pomocí `else`.
 
+```js
+let x = 100;
+let y = 80;
+let xSpeed = 3;
+let ySpeed = 2;
+
+p5.setup = function () { p5.createCanvas(600, 300); };
+p5.draw = function () {
+  p5.background(245);
+  x += xSpeed;
+  y += ySpeed;
+  if (x > p5.width || x < 0) { xSpeed = -xSpeed; }
+  if (y > p5.height || y < 0) { ySpeed = -ySpeed; }
+
+  p5.fill(70);
+  // TODO: Rozhodni, zda je kulička uvnitř středové obdélníkové oblasti.
+  // TODO: V oblasti změň vlastnost kuličky, mimo ni ji vrať pomocí else.
+  p5.circle(x, y, 40);
+};
+```
+@P5.eval
+
 <details><summary>Pomoc po vlastním pokusu</summary>
 
 Rozděl program na pohyb, odrazy a až potom otázku pro zónu.
@@ -155,6 +177,19 @@ Rozděl program na pohyb, odrazy a až potom otázku pro zónu.
 <details><summary>Konkrétnější nápověda</summary>
 
 Zóna potřebuje porovnání x zleva i zprava a y shora i zdola spojená `&&`.
+
+<details><summary>Řešení</summary>
+
+```js
+const veZone = x > 220 && x < 380 && y > 90 && y < 210;
+if (veZone) {
+  p5.fill(40, 180, 80);
+} else {
+  p5.fill(70);
+}
+```
+
+</details>
 
 </details></details>
 

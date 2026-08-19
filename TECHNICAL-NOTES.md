@@ -59,6 +59,13 @@
 
 ## Ověřená syntaxe
 
+## 2026-08-19 — WORLD 2 používal vzdálený template jiné větve
+
+- **Příčina:** všechny čtyři lekce WORLD 2 importovaly `GAME-MACROS.md` z raw URL větve `experimental/pilot`. Lokální `GAME-MACROS.md` s globálním systémovým font stackem se tak v Preview větve WORLD 2 nepoužil jako jeho sdílený template.
+- **Ovlivněné soubory:** `02-decisions/01-boolean-questions.md`, `02-if.md`, `03-bounce-and-logic.md` a `04-zones.md`.
+- **Proč se lišil WORLD 1:** WORLD 1 je publikován v `experimental/pilot`, tedy ve stejné větvi jako importovaný template; WORLD 2 odkazoval zpět na jinou větev.
+- **Oprava:** všechny lekce WORLD 2 nyní importují jeden sdílený template z `experimental/world2/GAME-MACROS.md`; nepřidávalo se žádné lokální `font-family` pravidlo. Po pushi je nutné Preview načíst znovu.
+
 Header s metadaty, `import:`, jednoduchá a parametrizovaná makra, blokové makro definice, HTML/CSS, single-choice kvízy, skrytá vysvětlení a editovatelný kód odpovídají dokumentaci LiaScriptu. Pilot používá `@P5.eval` podle aktuální dokumentace p5js template. Kvízy jsou mimo blockquote herních karet a pilot neobsahuje task-list syntaxi ani řádky `[[?]]`.
 
 Oficiální LiaScript Exporter úspěšně zpracoval aktuální lokální `GAME-MACROS.md` do JSON a potvrdil jeho atributová makra. Export pilotu ověřil syntaxi lekce, ale před pushem importoval starší vzdálenou verzi maker. Vizuální render s aktuálními kartami je proto nutné po pushi ověřit znovu v LiaScriptu.

@@ -165,6 +165,8 @@ Samostatnější úloha. Student už nedostává jediný řádek s `TODO`, ale s
 
 Cíl: přenos principu do nové situace.
 
+Míra scaffoldu: **COMPLETE** skrývá jeden malý krok, **MISSION** poskytuje runnable známé části a nechává 1–3 nové kroky, **BONUS** poskytuje méně scaffoldu a více svobody, **BOSS** jen minimální kostru a syntetickou specifikaci.
+
 ### 💎 BONUS / SIDE QUEST
 
 Dobrovolná úloha pro rychlejší nebo motivovanější studenty.

@@ -26,6 +26,10 @@ Smart Ball kombinuje pohyb v obou osách, čtyři hranice a aktivní zónu.
 
 Každá lekce byla po vytvoření ověřena lokálním validátorem a oficiálním LiaScript Exporterem.
 
+Fontový problém způsobil import `GAME-MACROS.md` z větve `experimental/pilot` místo sdíleného template větve WORLD 2. Všechny čtyři lekce nyní importují `experimental/world2`; po publikování získají stejný globální systémový font stack bez lokálních CSS patchů.
+
+WORLD 2 obsahuje 4 programátorské Mission; všechny 4 nyní obsahují runnable p5.js scaffold s označenými TODO.
+
 # Výsledky validace
 
 Závěrečná validace je uvedena v předávacím výstupu.
