@@ -1,6 +1,6 @@
 # JS Quest — AUTHORING-GUIDE
 
-**Verze:** 0.1  
+**Verze:** 1.0
 **Určeno pro:** autora lekcí, Codex/AI asistenta i učitele, který bude materiály později upravovat.
 
 ---
@@ -40,7 +40,13 @@ Po importu společných maker:
 @JSQ.styles
 ```
 
-Pokud lekce p5.js nepotřebuje, p5js import vynechte.
+Pro lekce `08-web/` místo p5js importu použijte ověřený WebDev template:
+
+```text
+import: https://raw.githubusercontent.com/liaTemplates/WebDev/master/README.md
+```
+
+Ostatní studentské lekce používají p5js template. Vždy importujte pouze jeden z těchto runtime template.
 
 ---
 
@@ -116,24 +122,20 @@ Potom může následovat experiment nebo vysvětlení.
 
 Makro typu aktivity vždy stojí samostatně před blockquotem. Vloží atributový komentář pro tento jediný blok; nikdy nepoužívejte dvojici maker, která otevírá a zavírá HTML element přes více Markdown bloků.
 
-Pokud je karta zároveň kvízem, blockquote ukončete před první volbou. Možnosti `[( )]`, `[(X)]`, nápovědy `[[?]]` i blok řešení musí tvořit jeden souvislý LiaScript blok mimo blockquote; nevkládejte do renderované lekce task-list `- [ ]` / `- [x]` bez jasného účelu.
+Pokud je karta zároveň kvízem, blockquote ukončete před první volbou. Možnosti `[( )]` a `[(X)]` musí tvořit jeden souvislý LiaScript blok mimo blockquote. Pomoc i vysvětlení patří do zavřených `details`/`summary` bloků.
 
 ---
 
 ## 6. Kvízy
 
-LiaScript podporuje mimo jiné:
+V ověřeném JS Quest používáme pouze single-choice syntax:
 
-- multiple choice `[[X]]`,
-- single choice `[(X)]`,
-- text quiz `[[řešení]]`,
-- selection quiz,
-- gap text,
-- generic quiz.
+```text
+[( )] chybná možnost
+[(X)] správná možnost
+```
 
-Používejte nápovědy tam, kde mají studenta vrátit k principu, nikoli rovnou prozradit odpověď.
-
-U kvízů používejte nativní postupnou pomoc: `[[?]]` pro nápovědy a blok mezi dvěma řádky s alespoň třemi hvězdičkami pro skryté vysvětlení řešení. `data-hint-button="1"` a `data-solution-button="1"` zpřístupní příslušné ovládání po prvním chybném pokusu.
+Nikdy do studentských lekcí nevkládejte `[[?]]`, `[[X]]` ani `[[ ]]`: renderer je může interpretovat jako další formulář se Submit. Stejně zakázané jsou dekorativní LiaScript Tasks `- [ ]`, `- [x]` a `- [X]`. Pomoc a vysvětlení vždy napište do zavřených `details`.
 
 Příklad single choice:
 
@@ -276,6 +278,10 @@ Mission vždy obsahuje editor s runnable výchozím kódem. Známé části jsou
 
 COMPLETE obvykle chybí jeden příkaz či výraz; BONUS nabízí méně scaffoldu a více svobody; BOSS poskytuje pouze minimální technickou kostru a specifikaci.
 
+### Web/DOM Mission
+
+V `08-web/` napište bezprostředně po sobě HTML a JavaScript code block a poté `@WebDev.HTML_JS`. Používejte pro každý příklad jedinečné id, aby selector mířil na správný prvek. Výchozí kód musí fungovat i před doplněním TODO.
+
 ---
 
 ## 11. Boss
@@ -389,18 +395,7 @@ NN-world-name/
 
 Před dokončením lekce:
 
-- [ ] Je první aktivita před delším výkladem?
-- [ ] Student něco předpovídá?
-- [ ] Student skutečně edituje kód?
-- [ ] Je nový koncept izolovaný?
-- [ ] Obsahuje lekce realistickou chybu?
-- [ ] Je Mission formulována jako chování?
-- [ ] Je Side Quest dobrovolný?
-- [ ] Nezavádí Boss neprobranou syntaxi?
-- [ ] Je po canvasové úloze důkaz porozumění?
-- [ ] Nejsou XP vydávány za známku?
-- [ ] Je vysvětlen případný `p5.` prefix?
-- [ ] Funguje lekce i jako čitelný Markdown?
+Před commitem si ověř: aktivita před výkladem, skutečná předpověď, editovatelný a runnable scaffold, izolovaný nový koncept, realistický Bug Hunt, dobrovolný Bonus, Boss bez nové syntaxe, kompetenční Flag a skrytou pomoc. Potom spusť `python tools/validate_course.py`, oficiální LiaScript Exporter pro upravenou lekci, regresní `rg` search a `git diff --check`.
 
 ---
 
@@ -408,6 +403,7 @@ Před dokončením lekce:
 
 - LiaScript dokumentace: `https://raw.githubusercontent.com/LiaScript/docs/master/README.md`
 - p5js template: `https://raw.githubusercontent.com/LiaTemplates/p5js/0.0.2/README.md`
+- WebDev template: `https://raw.githubusercontent.com/liaTemplates/WebDev/master/README.md`
 - p5.js reference: `https://p5js.org/reference/`
 
 V době návrhu pilotu dokumentace LiaScriptu uvádí makra, importy, kvízy, interaktivní scripting a lokální ukládání průběhu; oficiální p5js template nabízí `@P5.eval` a `@P5.project`.

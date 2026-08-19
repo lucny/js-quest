@@ -45,7 +45,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 
 # Globální QA
 
-Po každém WORLDu: validace, Exporter pro každou lekci, regresní search a didaktický audit. Na konci metriky, COURSE-TEST, COURSE-REPORT, Teacher a Answer guide.
+Dokončeno: validace, Exporter pro každou novou lekci, regresní search, didaktický audit, metriky, COURSE-TEST, COURSE-REPORT, Teacher Guide a Answer Guide. Čeká pouze manuální Preview publikované větve.
 
 # Otevřené problémy
 
@@ -60,3 +60,6 @@ Po každém WORLDu: validace, Exporter pro každou lekci, regresní search a did
 # Dokončeno
 
 - Založena větev `experimental/course-completion`.
+- WORLD 3–9 jsou dokončeny v samostatných checkpointech.
+- Vytvořeny Arena aktivity, učitelská dokumentace, Answer Guide a globální QA materiály.
+- Celokurzová automatická QA a Exporter prošly; stav je READY FOR MANUAL QA.

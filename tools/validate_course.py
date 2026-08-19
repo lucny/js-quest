@@ -24,6 +24,27 @@ REQUIRED_FILES = (
     "COURSE-MAP.md",
     "WORLD2-TEST.md",
     "WORLD2-REPORT.md",
+    "COURSE-COMPLETION-PLAN.md",
+    "ARENAS.md",
+    "TEACHER-GUIDE.md",
+    "ANSWER-GUIDE.md",
+    "COURSE-TEST.md",
+    "COURSE-REPORT.md",
+    "tools/course_metrics.py",
+    "WORLD3-TEST.md",
+    "WORLD3-REPORT.md",
+    "WORLD4-TEST.md",
+    "WORLD4-REPORT.md",
+    "WORLD5-TEST.md",
+    "WORLD5-REPORT.md",
+    "WORLD6-TEST.md",
+    "WORLD6-REPORT.md",
+    "WORLD7-TEST.md",
+    "WORLD7-REPORT.md",
+    "WORLD8-TEST.md",
+    "WORLD8-REPORT.md",
+    "WORLD9-TEST.md",
+    "WORLD9-REPORT.md",
 )
 LESSON = ROOT / "01-variables" / "01-moving-ball.md"
 MACROS = ROOT / "GAME-MACROS.md"
@@ -182,6 +203,18 @@ def validate_no_task_lists(path: Path, text: str) -> None:
         )
 
 
+def validate_student_regressions(path: Path, text: str) -> None:
+    """Known renderer regressions forbidden in every student lesson."""
+    if re.search(r"</?section\b", text, flags=re.IGNORECASE):
+        fail(f"{path.relative_to(ROOT)} obsahuje zakázaný HTML section element.")
+    if re.search(r"\[\[(?:\?|X|x| )\]\]", text):
+        fail(f"{path.relative_to(ROOT)} obsahuje zakázanou LiaScript syntax [[...]].")
+    if "font-family" in text or "@font-face" in text:
+        fail(f"{path.relative_to(ROOT)} definuje lokální typografii místo GAME-MACROS.md.")
+    if text.count("<details>") != text.count("</details>"):
+        fail(f"{path.relative_to(ROOT)} má nevyvážené prvky <details>.")
+
+
 def validate_multiple_choice_quizzes(path: Path, text: str) -> None:
     for match in MULTIPLE_CHOICE_OPTION.finditer(text):
         section_start = text.rfind("\n## ", 0, match.start())
@@ -274,6 +307,13 @@ def validate_mission_scaffold(path: Path, text: str) -> None:
             fail(f"{path.relative_to(ROOT)}: Mission scaffold neobsahuje TODO.")
 
 
+def validate_curriculum_shape() -> None:
+    expected_worlds = {f"{number:02d}" for number in range(1, 10)}
+    found_worlds = {path.parent.name.split("-", maxsplit=1)[0] for path in STUDENT_LESSONS}
+    if found_worlds != expected_worlds:
+        fail("Studentské lekce musí pokrývat právě WORLD 1 až WORLD 9.")
+
+
 ERRORS: list[str] = []
 
 
@@ -299,8 +339,10 @@ def run() -> int:
         student_text = read(path)
         validate_lesson_header(student_text, path)
         validate_no_task_lists(path, student_text)
+        validate_student_regressions(path, student_text)
         validate_multiple_choice_quizzes(path, student_text)
         validate_mission_scaffold(path, student_text)
+    validate_curriculum_shape()
     validate_world_two()
 
     for path in markdown_files:

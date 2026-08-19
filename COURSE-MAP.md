@@ -62,3 +62,7 @@
 3. [Nejmenší funkční verze](09-final-quest/03-mvp.md)
 4. [Debuguj jako autor](09-final-quest/04-debugging.md)
 5. [Final Quest](09-final-quest/05-final-quest.md)
+
+## Průřezové výzvy
+
+- [Arena aktivity](ARENAS.md) — Loop Arena, Data Arena a Game Arena.

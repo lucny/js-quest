@@ -1,40 +1,55 @@
 # JS Quest
 
-JS Quest je pilotní interaktivní kurz základů JavaScriptu pro začínající středoškolské studenty. Staví na krátkých programátorských problémech: předpověď, experiment, vysvětlení, úprava kódu a samostatné použití principu.
+JS Quest je interaktivní kurz základů JavaScriptu pro začínající středoškoláky. Vede od proměnných k samostatnému programu skrze předpovědi, malé experimenty, debugging a editovatelný kód. XP a vlajky jsou motivace a kompetenční orientace — nejsou známka.
 
-Technologie: [LiaScript](https://liascript.github.io/) pro interaktivní Markdown, kvízy a editovatelný kód; [p5.js](https://p5js.org/) pro přirozené vizualizace programového stavu. XP a vlajky jsou v pilotu pouze didaktická metadata, ne známky ani persistentní skóre.
+## Pro studenta
+
+Začni v [COURSE-MAP.md](COURSE-MAP.md) a otevři první lekci WORLD 1. Postupuj po WORLD ech; Bonus a [Arena aktivity](ARENAS.md) jsou dobrovolné. Final Quest ve WORLD 9 je příležitost vytvořit vlastní malý program.
+
+## Technologie a spuštění
+
+Kurz používá [LiaScript](https://liascript.github.io/), [p5.js](https://p5js.org/) pro vizualizace a oficiální LiaScript WebDev template pro WORLD 8. Po publikování větve otevři lekci v LiaScript Preview:
+
+```text
+https://liascript.github.io/course/?https://raw.githubusercontent.com/lucny/js-quest/experimental/course-completion/01-variables/01-moving-ball.md
+```
+
+P5 lekce běží v instance mode s prefixem `p5.`. Web/DOM lekce používají `@WebDev.HTML_JS`; jejich HTML a JavaScript se vykreslují společně v oficiálním template.
 
 ## Struktura
 
-- [COURSE-MAP.md](COURSE-MAP.md) — přehled WORLD 1 — Variables a WORLD 2 — Decisions.
-- [01-variables/01-moving-ball.md](01-variables/01-moving-ball.md) — WORLD 1: proměnné, přiřazení, rychlost a pohyb.
-- [02-decisions/01-boolean-questions.md](02-decisions/01-boolean-questions.md) — WORLD 2: booleanové výrazy, `if`, logické operátory, odrazy a zóny.
-- [GAME-DESIGN.md](GAME-DESIGN.md) — didaktický a herní návrh.
-- [GAME-MACROS.md](GAME-MACROS.md) — společná LiaScript makra a vzhled aktivit.
-- [AUTHORING-GUIDE.md](AUTHORING-GUIDE.md) — pravidla pro nové lekce.
-- [AGENTS.md](AGENTS.md) — trvalé pokyny pro automatizovanou práci na projektu.
+- WORLD 1 — Variables
+- WORLD 2 — Decisions
+- WORLD 3 — Loops
+- WORLD 4 — Functions
+- WORLD 5 — Arrays
+- WORLD 6 — Objects
+- WORLD 7 — Interaction
+- WORLD 8 — Web / DOM
+- WORLD 9 — Final Quest
 
-## Otevření pilotu
-
-Po pushi větve `experimental/pilot` otevři tento odkaz v prohlížeči:
-
-```text
-https://liascript.github.io/course/?https://raw.githubusercontent.com/lucny/js-quest/experimental/pilot/01-variables/01-moving-ball.md
-```
-
-LiaScript načte p5js template i společná makra přes importy z hlavní hlavičky lekce. Pro rychlé úpravy lze použít také [LiaScript Live Editor](https://liascript.github.io/LiveEditor/).
+Úplný seznam lekcí je v [COURSE-MAP.md](COURSE-MAP.md). Didaktická pravidla a společná makra jsou v [GAME-DESIGN.md](GAME-DESIGN.md) a [GAME-MACROS.md](GAME-MACROS.md).
 
 ## Validace
 
-Vyžaduje Python 3.11+ a nepřidává žádné závislosti:
+Vyžaduje Python 3.11+ bez dalších závislostí:
 
 ```powershell
 python tools/validate_course.py
+python tools/course_metrics.py
 git diff --check
 ```
 
-Validátor kontroluje povinné soubory, UTF-8, code fences, hlavičky a importy, sadu `@JSQ` maker, párování karet, označení WORLD, zakázané task/quiz konstrukce a lokální odkazy. Nenahrazuje render LiaScriptu ani manuální ověření interakce p5.js.
+Pro upravenou lekci spusť i oficiální LiaScript Exporter:
 
-## Nová lekce
+```powershell
+npx --yes @liascript/exporter -i 08-web/01-html-dom.md -p . -f json -o .tmp/lesson
+```
 
-Začni v [AUTHORING-GUIDE.md](AUTHORING-GUIDE.md), používej makra z [GAME-MACROS.md](GAME-MACROS.md) a před předáním spusť validaci. Společný CSS/HTML kód nepatří do jednotlivých lekcí.
+Automatické kontroly nenahrazují manuální Preview; použij [COURSE-TEST.md](COURSE-TEST.md).
+
+## Pro autora
+
+Začni v [AUTHORING-GUIDE.md](AUTHORING-GUIDE.md), zachovej globální makra a nevkládej CSS ani `font-family` do lekce. Mission musí mít editor, funkční výchozí scaffold a 1–3 TODO. Používej pouze single-choice kvízy `[( )]` / `[(X)]`, pomoc ve `details` a nikdy syntax `[[...]]` ani LiaScript Task listy.
+
+Před commitem proveď validaci, Exporter, regresní search a `git diff --check`. Učitelský postup shrnuje [TEACHER-GUIDE.md](TEACHER-GUIDE.md); odpovědi pro učitele jsou v [ANSWER-GUIDE.md](ANSWER-GUIDE.md).
