@@ -22,6 +22,12 @@ LESSON = ROOT / "01-variables" / "01-moving-ball.md"
 MACROS = ROOT / "GAME-MACROS.md"
 STUDENT_LESSONS = tuple(sorted(ROOT.glob("[0-9][0-9]-*/*.md")))
 TASK_LIST = re.compile(r"(?m)^[-*+] \[[ xX]\]")
+MULTIPLE_CHOICE_OPTION = re.compile(r"(?m)^\s*\[\[[Xx ]\]\]")
+SINGLE_CHOICE_THEN_MULTIPLE = re.compile(
+    r"(?m)^\s*(?:[-*+]\s+)?\[\([ Xx]\)\][^\n]*"
+    r"(?:\n\s*(?:[-*+]\s+)?\[\([ Xx]\)\][^\n]*)*"
+    r"\n(?:\s*\n)?\s*\[\[[Xx ]\]\]"
+)
 REQUIRED_MACROS = {
     "styles",
     "predict",
@@ -164,6 +170,21 @@ def validate_no_task_lists(path: Path, text: str) -> None:
         )
 
 
+def validate_multiple_choice_quizzes(path: Path, text: str) -> None:
+    for match in MULTIPLE_CHOICE_OPTION.finditer(text):
+        section_start = text.rfind("\n## ", 0, match.start())
+        section = text[section_start:match.start()] if section_start != -1 else text[:match.start()]
+        if not re.search(r"(?im)^##\s+MULTIPLE-CHOICE\b", section):
+            line = text.count("\n", 0, match.start()) + 1
+            fail(
+                f"{path.relative_to(ROOT)}:{line}: multiple-choice syntax [[X]] / [[ ]] "
+                "je povolena pouze v aktivitě označené 'MULTIPLE-CHOICE'."
+            )
+
+    if SINGLE_CHOICE_THEN_MULTIPLE.search(text):
+        fail("Possible accidental second multiple-choice quiz after single-choice quiz.")
+
+
 def validate_typography(macro_text: str) -> None:
     required_fonts = ('font-family:', '"Segoe UI"', '"Noto Sans"')
     for token in required_fonts:
@@ -222,7 +243,9 @@ def run() -> int:
     validate_typography(macro_text)
 
     for path in STUDENT_LESSONS:
-        validate_no_task_lists(path, read(path))
+        student_text = read(path)
+        validate_no_task_lists(path, student_text)
+        validate_multiple_choice_quizzes(path, student_text)
 
     for path in markdown_files:
         validate_local_links(path, read(path))
