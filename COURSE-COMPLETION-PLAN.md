@@ -15,7 +15,7 @@ Větev `experimental/course-completion` vychází z checkpointu WORLD 2. Platí 
 # WORLD 4
 
 - Plán: opakovaný blok → funkce → parametry → return/scope → Procedural Scene.
-- Stav: čeká na WORLD 3.
+- Stav: dokončeno; validátor, Exporter, regresní audit a checkpoint commit.
 
 # WORLD 5
 

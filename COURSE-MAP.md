@@ -18,3 +18,10 @@
 3. [Mřížka ze dvou opakování](03-loops/03-grid.md)
 4. [Kdy opakování skončí?](03-loops/04-safe-while.md)
 5. [Pattern Machine](03-loops/05-pattern-machine.md)
+
+## WORLD 4 — Functions
+
+1. [Pojmenovaná operace](04-functions/01-reusable-block.md)
+2. [Funkce dostává údaje](04-functions/02-parameters.md)
+3. [Funkce může vrátit výsledek](04-functions/03-return-scope.md)
+4. [Procedural Scene](04-functions/04-procedural-scene.md)
